@@ -14,7 +14,7 @@ const initialState = [
   }
 ];
 
-const itemsReducer = (state = initialState, action) => {
+const items = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ITEM_SELECTED:
       return state.map(
@@ -37,4 +37,4 @@ const itemsReducer = (state = initialState, action) => {
   }
 };
 
-export default itemsReducer;
+export default items;
