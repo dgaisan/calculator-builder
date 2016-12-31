@@ -1,0 +1,7 @@
+.sidebar-container {
+  position: relative;
+  width: 30%;
+  height: 100%;
+  min-height: 400px;
+  background-color: #cecece;
+}

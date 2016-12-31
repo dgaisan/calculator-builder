@@ -1,0 +1,12 @@
+.Stage {
+  position: relative;
+  width: 70%;
+  height: 100%;
+  min-height: 400px;
+  background-color: cadetblue;
+  border-left: 1px solid #000000;
+}
+
+.layout.react-grid-item {
+  background-color: #ffffff;
+}
