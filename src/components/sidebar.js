@@ -17,7 +17,7 @@ let Sidebar = ({title, itemType, selectedItem}) => {
   console.log('SideBar -> itemType', itemType);
   switch (itemType) {
     case ItemTypes.STATIC_TEXT:
-      currentSettingsView = StaticTextSettings;
+      currentSettingsView = <StaticTextSettings />;
       break;
     default:
 
@@ -27,7 +27,7 @@ let Sidebar = ({title, itemType, selectedItem}) => {
     <div className="sidebar-container">
       <AddNewItem />
       <hr />
-      <h2>{title}</h2>  
+      <h2>{title}</h2>
       {currentSettingsView}
     </div>
   );

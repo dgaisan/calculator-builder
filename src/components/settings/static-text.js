@@ -4,12 +4,7 @@ import React from 'react';
 const StaticTextSettings = ({headerText, headerStyle, bodyText, bodyStyle}) => {
   return (
     <div className="text-item">
-      <div className="header" style={headerStyle}>
-        {headerText}
-      </div>
-      <div className="content" style={bodyStyle}>
-        {bodyText}
-      </div>
+      Text Settings are displayed here
     </div>
   );
 };
