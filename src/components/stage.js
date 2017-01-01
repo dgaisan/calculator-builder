@@ -4,6 +4,7 @@ import { Responsive, WidthProvider }    from 'react-grid-layout';
 import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
 import './stage.css';
+import TextItem                         from './items/static-text';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -33,6 +34,12 @@ class Stage extends Component {
     this.props.dispatch(itemSelected(parseInt(layoutItem.i, 10)));
   };
 
+  onStageClicked = (e) => {
+    e.preventDefault();
+    console.log(e.target);
+    this.props.dispatch(itemSelected(0));
+  }
+
   render() {
     const { items, selectedItem } = this.props;
     // let layout = [
@@ -56,12 +63,16 @@ class Stage extends Component {
       }
 
       return (
-        <div style={style} key={item.id}>{item.text}</div>
+        <div style={style} key={item.id}>
+          <TextItem headerText={item.headerText}
+                    //headerStyle={}
+                    bodyText={item.text} />
+        </div>
       );
     });
 
     return (
-      <div className="Stage">
+      <div className="Stage" onClick={this.onStageClicked}>
         <ResponsiveReactGridLayout
           className="layout"
           layouts={{lg: this.state.layout}}
