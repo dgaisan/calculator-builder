@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import itemsReducer from './items';
-import visibilityFilter from './items0';
+import selectedItem from './selected-item';
 
 
 const calcBuilderApp = combineReducers({
    items: itemsReducer,
-   filter: visibilityFilter, // For testing purpose
+   selectedItem: selectedItem,
  });
 
 export default calcBuilderApp;

@@ -1,7 +1,7 @@
 import React, { Component, PropTypes }  from 'react';
 import { connect }                      from 'react-redux';
 import { Responsive, WidthProvider }    from 'react-grid-layout';
-//import { itemSelected }                 from './../actions';
+import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
 import './stage.css';
 
@@ -10,10 +10,6 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 class Stage extends Component {
   constructor(props) {
     super(props);
-
-    console.log('constructing Stage');
-    console.log('props:');
-    console.log(props);
 
     this.state = {
       mounted: false,
@@ -28,43 +24,41 @@ class Stage extends Component {
     this.mounted = true;;
   }
 
-  onLayoutChange = (layout, layouts, more) => {
+  onLayoutChange = (layout, layouts) => {
     console.log('Layout has changed');
-    console.log(layout);
-    console.log(layouts);
-    console.log(more);
   };
 
   // used to indicate selection of an item
   onDragStart = (param1, layoutItem) => {
-    console.log('onDragStart');
-    //console.log(param1);
-
-    // this.props.dispatch(itemsSelected);
+    this.props.dispatch(itemSelected(parseInt(layoutItem.i, 10)));
   };
 
   render() {
-    console.log('rendering stage!');
-    console.log('changed items:');
-    const { items } = this.props;
-    console.log(items);
-    let layout = [
-        {i: 'a', x: 0, y: 0, w: 1, h: 2},
-        {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-        {i: 'c', x: 4, y: 0, w: 1, h: 2}
-      ];
-    const style = {
+    const { items, selectedItem } = this.props;
+    // let layout = [
+    //     {i: 'a', x: 0, y: 0, w: 1, h: 2},
+    //     {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
+    //     {i: 'c', x: 4, y: 0, w: 1, h: 2}
+    //   ];
+    let basicStyle = {
       backgroundColor: '#ffffff'
     };
-    let itemsDivs = items.map((item) => {
-      console.log('item:', item);
+    const itemsDivs = items.map((item) => {
+      let style = basicStyle;
+      if (item.id === selectedItem) {
+        style = {
+          ...basicStyle,
+          boxSizing: 'border-box',
+          MozBoxSizing: 'border-box',
+          WebkitBoxSizing: 'border-box',
+          border: '2px solid #f00',
+        }
+      }
+
       return (
-        <div style={style} key={item.id}>{item.id}</div>
+        <div style={style} key={item.id}>{item.text}</div>
       );
     });
-
-    console.log('itemsDivs:');
-    console.log(itemsDivs);
 
     return (
       <div className="Stage">
@@ -90,16 +84,16 @@ class Stage extends Component {
 Stage.propTypes = {
   dispatch: PropTypes.func.isRequired,
   items: PropTypes.array.isRequired,
+  selectedItem: PropTypes.number.isRequired,
 }
 
 const mapStateToProps = (state) => {
   console.log('Stage->mapStateToProps');
   console.log(state);
   return {
-    items: state.items.filter((item) => (item.type !== ItemTypes.STAGE))
+    items: state.items.filter((item) => (item.type !== ItemTypes.STAGE)),
+    selectedItem: state.selectedItem,
   };
 };
-
-
 
 export default connect(mapStateToProps)(Stage);

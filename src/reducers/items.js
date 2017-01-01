@@ -1,4 +1,3 @@
-import {ItemSelected} from './../actions';
 import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
 
@@ -22,7 +21,6 @@ const items = (state = initialState, action) => {
           isSelected: action.id === item.id ? true : false
         }));
     case ActionTypes.ADD_STATIC_TEXT:
-      console.log('itemsReducer -> ADD_STATIC_TEXT');
       return [
         ...state,
         {
