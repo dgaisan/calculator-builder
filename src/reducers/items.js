@@ -29,7 +29,25 @@ const items = (state = initialState, action) => {
           text: action.text,
           headerText: action.headerText,
         }
-      ]
+      ];
+    case ActionTypes.CHANGE_ITEM_HEADER:
+      return state.map(
+        (item) => {
+          let newItem = Object.assign({}, item);
+          if (item.id === action.id) {
+            newItem.headerText = action.headerText;
+          }
+          return newItem;
+        });
+    case ActionTypes.CHANGE_ITEM_TEXT:
+      return state.map(
+        (item) => {
+          let newItem = Object.assign({}, item);
+          if (item.id === action.id) {
+            newItem.text = action.text;
+          }
+          return newItem;
+        });
     default:
       return state;
   }

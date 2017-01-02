@@ -1,6 +1,7 @@
 import React              from 'react';
 import { connect }        from 'react-redux';
 import ItemTypes          from './../constants/item-types';
+
 import './sidebar.css';
 import AddNewItem         from './addnewitem';
 import StaticTextSettings from './settings/static-text';
@@ -17,7 +18,7 @@ let Sidebar = ({title, itemType, selectedItem}) => {
   console.log('SideBar -> itemType', itemType);
   switch (itemType) {
     case ItemTypes.STATIC_TEXT:
-      currentSettingsView = <StaticTextSettings />;
+      currentSettingsView = <StaticTextSettings item={selectedItem} />;
       break;
     default:
 

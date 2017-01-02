@@ -35,9 +35,9 @@ class Stage extends Component {
   };
 
   onStageClicked = (e) => {
-    e.preventDefault();
+    console.log('Stage is clicked');
     console.log(e.target);
-    this.props.dispatch(itemSelected(0));
+    //this.props.dispatch(itemSelected(0));
   }
 
   render() {
