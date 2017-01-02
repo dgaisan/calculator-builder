@@ -5,14 +5,12 @@ import {addStaticText, addNumberField} from './../actions';
 let InsertNewItem = ({dispatch, onClose}) => {
   const _handleStaticText = (e) => {
     e.preventDefault();
-    console.log('Adding STatic text');
     dispatch(addStaticText());
     onClose(e);
   };
 
   const _handleNumberField = (e) => {
     e.preventDefault();
-    console.log('Adding Number field');
     dispatch(addNumberField());
     onClose(e);
   };

@@ -15,7 +15,6 @@ const defaultView = () => (
 let Sidebar = ({title, itemType, selectedItem}) => {
   let currentSettingsView = defaultView();
 
-  console.log('SideBar -> itemType', itemType);
   switch (itemType) {
     case ItemTypes.STATIC_TEXT:
       currentSettingsView = <StaticTextSettings item={selectedItem} />;
@@ -35,8 +34,6 @@ let Sidebar = ({title, itemType, selectedItem}) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log('mapping state to props');
-  console.log(state);
   let title = '';
   const selectedItemId = state.selectedItem;
   const selectedItem = state.items.find(item => (item.id === selectedItemId));

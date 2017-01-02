@@ -11,18 +11,53 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 class Stage extends Component {
   constructor(props) {
     super(props);
-
+    console.log('Stage->constructor');
     this.state = {
       mounted: false,
-      layout: props.items.map(item => {
-        const {id : i, x, y, w, h} = item;
-        return {i, x, y, w, h};
-      })
+      layouts: this._getLayouts(props.items)
+    }
+  }
+
+  _getLayouts = (items) => {
+    console.log('Getting Laoyouts', items);
+    return items.map(item => {
+      let {i, x, y, w, h} = item;
+      i = String(i);
+      return {i, x, y, w, h};
+    });
+  }
+
+  componentWillReceiveProps(nextProps) {
+
+    const layouts = this.state.layouts;
+    const newLayouts = this._getLayouts(nextProps.items);
+
+    // decide whether ot not local state should be updated.
+    // if item layputs changed then need to re-set layouts prop
+    let layoutChangedFlag = false;
+
+    if (newLayouts.length !== layouts.length) {
+      layoutChangedFlag = true;
+    } else {
+      newLayouts.forEach(item => {
+        // ei: existing item
+        const ei = layouts.find(i => (i.i === item.i));
+        if (!ei) { layoutChangedFlag = true; }
+        if (ei.x !== item.x || ei.y !== item.y || ei.w !== item.w || ei.h !== item.h) {
+          layoutChangedFlag = true;
+        }
+      });
+    }
+
+    console.log('layoutChangedFlag', layoutChangedFlag);
+
+    if (layoutChangedFlag) {
+      this.setState({layouts: newLayouts});
     }
   }
 
   componentDidMount() {
-    this.mounted = true;;
+    this.setState({mounted: true});
   }
 
   onLayoutChange = (layout, layouts) => {
@@ -35,9 +70,11 @@ class Stage extends Component {
   };
 
   onStageClicked = (e) => {
-    console.log('Stage is clicked');
-    console.log(e.target);
     //this.props.dispatch(itemSelected(0));
+  }
+
+  onRemoveItem = itemId => {
+    console.log('removing item', itemId);
   }
 
   render() {
@@ -66,7 +103,9 @@ class Stage extends Component {
         <div style={style} key={item.id}>
           <TextItem headerText={item.headerText}
                     //headerStyle={}
-                    bodyText={item.text} />
+                    bodyText={item.text}
+                    onRemoveItem={() => {this.onRemoveItem(item.id)}}
+                   />
         </div>
       );
     });
@@ -75,15 +114,14 @@ class Stage extends Component {
       <div className="Stage" onClick={this.onStageClicked}>
         <ResponsiveReactGridLayout
           className="layout"
-          layouts={{lg: this.state.layout}}
+          layouts={{lg: this.state.layouts}}
           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
           measureBeforeMount={false}
           useCSSTransforms={this.state.mounted}
           onLayoutChange={this.onLayoutChange}
           onDragStart={this.onDragStart}
           onResizeStart={()=>{console.log('onDragStart');}}
-
-          rowHeight={30}>
+          rowHeight={150}>
             {itemsDivs}
 
         </ResponsiveReactGridLayout>

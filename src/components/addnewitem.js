@@ -15,7 +15,6 @@ class AddNewItem extends React.Component {
 
   _handleClick(e){
     e.preventDefault();
-    console.log('Add new Item clicked');
     this.setState({showModal: true});
   }
 

@@ -2,16 +2,25 @@ import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
 
 
-const initialState = [
-  {
-    id: 0,
-    type: ItemTypes.STAGE,
+const getNextDefaultItem = (id, type, header, text, numberOfCurrentItems) => {
+  return {
+    id: id,
+    type: type,
+    headerText: header,
+    text: text,
     isSelected: true,
     bgcolor: '#cecece',
-    width: '600',
-    height: '900',
+    w: 1,
+    h: 1,
+    x: 0,
+    y: numberOfCurrentItems + 1,
   }
+}
+
+const initialState = [
+  getNextDefaultItem(0, ItemTypes.STAGE, 'Default Header', 'Default Text', 0)
 ];
+
 
 const items = (state = initialState, action) => {
   switch (action.type) {
@@ -23,12 +32,12 @@ const items = (state = initialState, action) => {
     case ActionTypes.ADD_STATIC_TEXT:
       return [
         ...state,
-        {
-          type: ItemTypes.STATIC_TEXT,
-          id: action.id,
-          text: action.text,
-          headerText: action.headerText,
-        }
+        getNextDefaultItem(action.id, ItemTypes.STATIC_TEXT, action.headerText, action.text, state.length)
+      ];
+    case ActionTypes.ADD_NUMBER_FIELD:
+      return [
+        ...state,
+        getNextDefaultItem(action.id, ItemTypes.NUMBER_FIELD, action.headerText, action.text, state.length)
       ];
     case ActionTypes.CHANGE_ITEM_HEADER:
       return state.map(
