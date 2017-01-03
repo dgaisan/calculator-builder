@@ -1,5 +1,5 @@
-import React, {PropTypes} from 'react';
-import './static-text.css';
+import React, {PropTypes}   from 'react';
+import                      './static-text.css';
 
 const TextItem = ({headerText, headerStyle, bodyText, bodyStyle, onRemoveItem}) => {
   return (
@@ -18,6 +18,7 @@ const TextItem = ({headerText, headerStyle, bodyText, bodyStyle, onRemoveItem}) 
 TextItem.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
   headerText: PropTypes.string.isRequired,
+  bodyText: PropTypes.string.isRequired
 }
 
 export default TextItem;

@@ -5,6 +5,7 @@ import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
 import './stage.css';
 import TextItem                         from './items/static-text';
+import NumberItem                       from './items/number-field';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -93,11 +94,6 @@ class Stage extends Component {
 
   render() {
     const { items, selectedItem } = this.props;
-    // let layout = [
-    //     {i: 'a', x: 0, y: 0, w: 1, h: 2},
-    //     {i: 'b', x: 1, y: 0, w: 3, h: 2, minW: 2, maxW: 4},
-    //     {i: 'c', x: 4, y: 0, w: 1, h: 2}
-    //   ];
     let basicStyle = {
       backgroundColor: '#ffffff'
     };
@@ -113,19 +109,32 @@ class Stage extends Component {
         }
       }
       const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
-      //const datagrid = {w: 5, h: 4, x: 4, y: 4};
-      console.log('datagrid', datagrid);
+      let itemView = null;
+      console.log('item', item);
+      console.log('item.type', item.type);
+
+      switch (item.type) {
+        case ItemTypes.STATIC_TEXT:
+          itemView = <TextItem headerText={item.headerText}
+            bodyText={item.text}
+            onRemoveItem={() => {this.onRemoveItem(item.id)}} />
+          break;
+        case ItemTypes.NUMBER_FIELD:
+          itemView = <NumberItem headerText={item.headerText}
+            item={item}
+            number={item.value}
+            onNumberChanged={(value, itemId)=>{ console.log('onNumberChanged', value, itemId); }}
+            onRemoveItem={() => {this.onRemoveItem(item.id)}} />
+          break;
+        default:
+      }
 
       return (
         <div style={style}
           key={item.id}
 
           data-grid={datagrid} >
-          <TextItem headerText={item.headerText}
-                    //headerStyle={}
-                    bodyText={item.text}
-                    onRemoveItem={() => {this.onRemoveItem(item.id)}}
-                   />
+          {itemView}
         </div>
       );
     });
@@ -142,7 +151,7 @@ class Stage extends Component {
           onLayoutChange={this.onLayoutChange}
           onDragStart={this.onDragStart}
           onDragStop={this.onDragStop}
-          onResizeStart={()=>{console.log('onResizeStart');}}
+          onResizeStop={this.onResizeStop}
           rowHeight={150}>
             {itemsDivs}
         </ResponsiveReactGridLayout>

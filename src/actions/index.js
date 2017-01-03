@@ -11,10 +11,10 @@ export const addStaticText = (headerText = DEFAULT_HEADER_TEXT, text = DEFAULT_T
   id: ++nextItemId,
 });
 
-export const addNumberField = (headerText = DEFAULT_HEADER_TEXT, defaultNumber = 0.0) => ({
+export const addNumberField = (headerText = DEFAULT_HEADER_TEXT, number = 0.0) => ({
   type: ActionTypes.ADD_NUMBER_FIELD,
   headerText: headerText,
-  defaultNumber: defaultNumber,
+  value: number,
   id: ++nextItemId,
 });
 
@@ -34,3 +34,8 @@ export const changeItemText = (text = DEFAULT_TEXT, itemId) => ({
   text: text,
   id: itemId
 });
+
+export const changeLayout = (layouts) => ({
+  type: ActionTypes.LAYOUT_CHANGED,
+  layouts: layouts,
+})
