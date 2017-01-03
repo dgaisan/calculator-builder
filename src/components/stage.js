@@ -69,6 +69,20 @@ class Stage extends Component {
     this.props.dispatch(itemSelected(parseInt(layoutItem.i, 10)));
   };
 
+  onDragStop = (param1, layoutItem) => {
+    console.log('onDragStop');
+    console.log('param1', param1);
+    console.log('layoutItem', layoutItem);
+    // TODO: update layout
+  }
+
+  onResizeStop = (param1, layoutItem) => {
+    console.log('onResizeStop');
+    console.log('param1', param1);
+    console.log('layoutItem', layoutItem);
+    // TODO: update layout
+  }
+
   onStageClicked = (e) => {
     //this.props.dispatch(itemSelected(0));
   }
@@ -98,9 +112,15 @@ class Stage extends Component {
           border: '2px solid #f00',
         }
       }
+      const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
+      //const datagrid = {w: 5, h: 4, x: 4, y: 4};
+      console.log('datagrid', datagrid);
 
       return (
-        <div style={style} key={item.id}>
+        <div style={style}
+          key={item.id}
+
+          data-grid={datagrid} >
           <TextItem headerText={item.headerText}
                     //headerStyle={}
                     bodyText={item.text}
@@ -116,14 +136,15 @@ class Stage extends Component {
           className="layout"
           layouts={{lg: this.state.layouts}}
           cols={{lg: 12, md: 10, sm: 6, xs: 4, xxs: 2}}
+          isResizable={true}
           measureBeforeMount={false}
           useCSSTransforms={this.state.mounted}
           onLayoutChange={this.onLayoutChange}
           onDragStart={this.onDragStart}
-          onResizeStart={()=>{console.log('onDragStart');}}
+          onDragStop={this.onDragStop}
+          onResizeStart={()=>{console.log('onResizeStart');}}
           rowHeight={150}>
             {itemsDivs}
-
         </ResponsiveReactGridLayout>
       </div>
     );

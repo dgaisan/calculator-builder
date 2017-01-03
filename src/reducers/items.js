@@ -10,7 +10,7 @@ const getNextDefaultItem = (id, type, header, text, numberOfCurrentItems) => {
     text: text,
     isSelected: true,
     bgcolor: '#cecece',
-    w: 1,
+    w: 12,
     h: 1,
     x: 0,
     y: numberOfCurrentItems + 1,
@@ -20,7 +20,6 @@ const getNextDefaultItem = (id, type, header, text, numberOfCurrentItems) => {
 const initialState = [
   getNextDefaultItem(0, ItemTypes.STAGE, 'Default Header', 'Default Text', 0)
 ];
-
 
 const items = (state = initialState, action) => {
   switch (action.type) {

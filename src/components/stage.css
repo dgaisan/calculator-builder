@@ -7,6 +7,16 @@
   border-left: 1px solid #000000;
 }
 
+.Stage .react-resizable-handle {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 10px;
+  height: 10px;
+  display: table;
+  background: #cecece;
+}
+
 .layout.react-grid-item {
   background-color: #ffffff;
 }

@@ -17,7 +17,7 @@ const TextItem = ({headerText, headerStyle, bodyText, bodyStyle, onRemoveItem}) 
 
 TextItem.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
-
+  headerText: PropTypes.string.isRequired,
 }
 
 export default TextItem;
