@@ -1,27 +1,30 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
 import { changeItemName, changeItemText } from './../../actions';
+import { InputGroup, FormControl } from 'react-bootstrap';
+import './../../styles/bootstrap.css';
 
 const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
-  let headerInput, textInput;
 
   return (
     <div className="text-item">
-      <div>
-        <p>Header Text</p>
-        <input type="text" value={item.headerText}
-          ref={node => { headerInput = node; }}
-          onChange={() => { onItemNameChanged(headerInput.value, item.id); }}
-          placeholder="Enter new header text" />
-      </div>
-      <br />
-      <div>
-        <p>Body Text</p>
-        <input type="text" value={item.text}
-          ref={node => { textInput = node; }}
-          onChange={() => { onTextChanged(textInput.value, item.id); }}
-          placeholder="Enter new body text" />
-      </div>
+      <form>
+        <InputGroup>
+          <InputGroup.Addon>Item Name</InputGroup.Addon>
+          <FormControl type="text"
+            value={item.itemName}
+            onChange={(e) => { onItemNameChanged(e.target.value, item.id); }}
+            placeholder="Enter new item name..."/>
+        </InputGroup>
+        <br />
+        <InputGroup>
+          <InputGroup.Addon>Item Text</InputGroup.Addon>
+          <FormControl type="text"
+            value={item.text}
+            onChange={(e) => { onTextChanged(e.target.value, item.id); }}
+            placeholder="Enter new item text..."/>
+        </InputGroup>
+      </form>
     </div>
   );
 };
