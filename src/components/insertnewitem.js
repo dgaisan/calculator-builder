@@ -1,18 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {addStaticText, addNumberField} from './../actions';
+import {addStaticText, addNumberField, addNumberResultField} from './../actions';
 
 let InsertNewItem = ({dispatch, onClose}) => {
-  const _handleStaticText = (e) => {
+  const _handleDispatch = (e, actionCreator) => {
     e.preventDefault();
-    dispatch(addStaticText());
+    dispatch(actionCreator());
     onClose(e);
+  }
+
+  const _handleStaticText = (e) => {
+    _handleDispatch(e, addStaticText);
   };
 
   const _handleNumberField = (e) => {
-    e.preventDefault();
-    dispatch(addNumberField());
-    onClose(e);
+    _handleDispatch(e, addNumberField);
+  };
+
+  const _handleNumberResultField = (e) => {
+    _handleDispatch(e, addNumberResultField);
   };
 
   return (
@@ -20,6 +26,7 @@ let InsertNewItem = ({dispatch, onClose}) => {
       <p>Select Item Type to Insert on Stage</p>
       <button onClick={_handleStaticText}>Add Static Text</button>
       <button onClick={_handleNumberField}>Add Number Field</button>
+      <button onClick={_handleNumberResultField}>Add Number Result Field</button>
     </div>
   );
 };

@@ -20,6 +20,15 @@ export const addNumberField = (number = 0.0) => ({
   text: DEFAULT_TEXT,
 });
 
+export const addNumberResultField = (formula = '') => ({
+  type: ActionTypes.ADD_NUMBER_RESULT_FIELD,
+  id: ++nextItemId,
+  itemName: 'result' + nextItemId,
+  formula: formula,
+  value: 0.0,
+  text: DEFAULT_TEXT,
+});
+
 export const itemSelected = (id) => ({
   type: ActionTypes.ITEM_SELECTED,
   id: id,
@@ -37,7 +46,19 @@ export const changeItemText = (text = DEFAULT_TEXT, itemId) => ({
   id: itemId,
 });
 
+export const changeFormula = (formula = '', itemId) => ({
+  type: ActionTypes.CHANGE_FORMULA,
+  formula: formula,
+  id: itemId,
+});
+
 export const changeLayout = (layouts) => ({
   type: ActionTypes.LAYOUT_CHANGED,
   layouts: layouts,
+});
+
+export const calculatableValueChanged = (value, itemId) => ({
+  type: ActionTypes.CALCULATABLE_VALUE_CHANGED,
+  value: value,
+  id: itemId,
 });

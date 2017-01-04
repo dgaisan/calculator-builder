@@ -5,6 +5,8 @@ import ItemTypes          from './../constants/item-types';
 import './sidebar.css';
 import AddNewItem         from './addnewitem';
 import StaticTextSettings from './settings/static-text';
+import NumberFieldSettings from './settings/number-field';
+import NumberResultSettings from './settings/number-result';
 
 const defaultView = () => (
   <div>
@@ -12,15 +14,25 @@ const defaultView = () => (
   </div>
 );
 
-let Sidebar = ({title, itemType, selectedItem}) => {
+let Sidebar = ({itemType, selectedItem}) => {
   let currentSettingsView = defaultView();
+  let title = '';
 
   switch (itemType) {
     case ItemTypes.STATIC_TEXT:
+      title = 'Static Text Settings';
       currentSettingsView = <StaticTextSettings item={selectedItem} />;
       break;
+    case ItemTypes.NUMBER_FIELD:
+      title = 'Number Field Settings';
+      currentSettingsView = <NumberFieldSettings item={selectedItem} />;
+      break;
+    case ItemTypes.NUMBER_RESULT:
+      title = 'Number Result Settings';
+      currentSettingsView = <NumberResultSettings item={selectedItem} />;
+      break;
     default:
-
+      title = 'Stage Settings';
   }
 
   return (
@@ -34,21 +46,11 @@ let Sidebar = ({title, itemType, selectedItem}) => {
 };
 
 const mapStateToProps = (state) => {
-  let title = '';
   const selectedItemId = state.selectedItem;
   const selectedItem = state.items.find(item => (item.id === selectedItemId));
   const itemType = selectedItem ? selectedItem.type : selectedItem;
 
-  switch (itemType) {
-    case ItemTypes.STATIC_TEXT:
-      title = 'Static Text Settings';
-      break;
-    default:
-      title = 'Stage Settings';
-  }
-
   return {
-    title: title,
     itemType: itemType,
     selectedItem: selectedItem,
   }

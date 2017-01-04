@@ -3,9 +3,11 @@ import { connect }                      from 'react-redux';
 import { Responsive, WidthProvider }    from 'react-grid-layout';
 import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
+import { calculatableValueChanged }     from './../actions'
 import './stage.css';
 import TextItem                         from './items/static-text';
 import NumberItem                       from './items/number-field';
+import ResultItem                       from './items/result-number-field';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -93,7 +95,7 @@ class Stage extends Component {
   }
 
   render() {
-    const { items, selectedItem } = this.props;
+    const { items, selectedItem, dispatch } = this.props;
     let basicStyle = {
       backgroundColor: '#ffffff'
     };
@@ -124,7 +126,13 @@ class Stage extends Component {
             item={item}
             itemText={item.text}
             number={item.value}
-            onNumberChanged={(value, itemId)=>{ console.log('onNumberChanged', value, itemId); }}
+            onNumberChanged={(value, itemId)=>{ console.log('number field changed', value, itemId); dispatch(calculatableValueChanged(value, itemId))} }
+            onRemoveItem={() => {this.onRemoveItem(item.id)}} />
+          break;
+        case ItemTypes.NUMBER_RESULT:
+          itemView = <ResultItem itemName={item.itemName}
+            itemText={item.text}
+            result={item.value}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         default:
