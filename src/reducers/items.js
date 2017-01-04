@@ -6,7 +6,7 @@ const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
   let ret = {
     id: action.id,
     type: type,
-    headerText: action.headerText,
+    itemName: action.itemName,
     text: action.text,
     value: action.value,
     isSelected: true,
@@ -21,7 +21,7 @@ const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
 }
 
 const initialState = [
-  getNextDefaultItem(ItemTypes.STAGE, {id: 0, headerText: 'Default Header', text: 'Default Text', value: 0.0}, 0)
+  getNextDefaultItem(ItemTypes.STAGE, {id: 0, itemName: 'Default Header', text: 'Default Text', value: 0.0}, 0)
 ];
 
 const items = (state = initialState, action) => {
@@ -49,7 +49,7 @@ const items = (state = initialState, action) => {
         (item) => {
           let newItem = Object.assign({}, item);
           if (item.id === action.id) {
-            newItem.headerText = action.headerText;
+            newItem.itemName = action.itemName;
           }
           return newItem;
         });

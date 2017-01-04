@@ -1,24 +1,23 @@
 import React, {PropTypes}   from 'react';
 import                      './static-text.css';
+import ItemHeader           from './item-header';
 
-const TextItem = ({headerText, headerStyle, bodyText, bodyStyle, onRemoveItem}) => {
+const TextItem = ({itemName, itemText, itemStyle, onRemoveItem}) => {
   return (
     <div className="text-item">
-      <div className="header" style={headerStyle}>
-        {headerText}
+      <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
+      <div className="content" style={itemStyle}>
+        {itemText}
       </div>
-      <div className="content" style={bodyStyle}>
-        {bodyText}
-      </div>
-      <span className="remove" onClick={onRemoveItem}>x</span>
     </div>
   );
 };
 
 TextItem.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
-  headerText: PropTypes.string.isRequired,
-  bodyText: PropTypes.string.isRequired
+  itemName:     PropTypes.string.isRequired,
+  itemText:     PropTypes.string.isRequired,
+  itemStyle:    PropTypes.string,
 }
 
 export default TextItem;

@@ -110,18 +110,19 @@ class Stage extends Component {
       }
       const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
       let itemView = null;
+      console.log('rendering stage');
       console.log('item', item);
-      console.log('item.type', item.type);
 
       switch (item.type) {
         case ItemTypes.STATIC_TEXT:
-          itemView = <TextItem headerText={item.headerText}
-            bodyText={item.text}
+          itemView = <TextItem itemName={item.itemName}
+            itemText={item.text}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         case ItemTypes.NUMBER_FIELD:
-          itemView = <NumberItem headerText={item.headerText}
+          itemView = <NumberItem itemName={item.itemName}
             item={item}
+            itemText={item.text}
             number={item.value}
             onNumberChanged={(value, itemId)=>{ console.log('onNumberChanged', value, itemId); }}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
@@ -152,7 +153,7 @@ class Stage extends Component {
           onDragStart={this.onDragStart}
           onDragStop={this.onDragStop}
           onResizeStop={this.onResizeStop}
-          rowHeight={150}>
+          rowHeight={50}>
             {itemsDivs}
         </ResponsiveReactGridLayout>
       </div>

@@ -1,8 +1,8 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
-import { changeItemHeader, changeItemText } from './../../actions';
+import { changeItemName, changeItemText } from './../../actions';
 
-const StaticTextSettings = ({item, onTextChanged, onHeaderChanged}) => {
+const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   let headerInput, textInput;
 
   return (
@@ -11,7 +11,7 @@ const StaticTextSettings = ({item, onTextChanged, onHeaderChanged}) => {
         <p>Header Text</p>
         <input type="text" value={item.headerText}
           ref={node => { headerInput = node; }}
-          onChange={() => { onHeaderChanged(headerInput.value, item.id); }}
+          onChange={() => { onItemNameChanged(headerInput.value, item.id); }}
           placeholder="Enter new header text" />
       </div>
       <br />
@@ -28,7 +28,7 @@ const StaticTextSettings = ({item, onTextChanged, onHeaderChanged}) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onHeaderChanged: (value, id) => (dispatch(changeItemHeader(value, id))),
+    onItemNameChanged: (value, id) => (dispatch(changeItemName(value, id))),
     onTextChanged: (value, id) => (dispatch(changeItemText(value, id)))
   }
 }

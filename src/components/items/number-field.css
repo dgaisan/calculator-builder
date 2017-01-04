@@ -15,7 +15,15 @@
 .content {
   position: relative;
   width: 100%;
+  display: flex;
   text-align: center;
+}
+.content p {
+  width: 50%;
+}
+
+.content input {
+  width: 50%;
 }
 
 .remove {
