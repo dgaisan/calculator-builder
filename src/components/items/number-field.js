@@ -25,7 +25,7 @@ NumberItem.propTypes = {
   onRemoveItem:     PropTypes.func.isRequired,
   itemName:         PropTypes.string,
   itemText:         PropTypes.string.isRequired,
-  number:           PropTypes.number.isRequired,
+  number:           PropTypes.number,
   item:             PropTypes.object.isRequired,
 }
 

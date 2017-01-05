@@ -21,6 +21,14 @@ const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
   return ret;
 }
 
+const _nameToItemMapping = (state) => {
+  let nameToItemMapping = {};
+  state.forEach(item => {
+    nameToItemMapping[ item.itemName] = item;
+  });
+  return nameToItemMapping;
+}
+
 const _updateResults = (state, namesToItems) => {
   console.log('_updateResults');
   console.log('namesToItems', namesToItems);
@@ -39,7 +47,12 @@ const _updateResults = (state, namesToItems) => {
         }
       });
       console.log('new formula', formula);
-      item.value = eval(formula);
+      try {
+        item.value = eval(formula);
+      } catch (err) {
+        console.log('the formula is invalid');
+        item.value = 0;
+      }
     }
     return item;
   });
@@ -79,7 +92,7 @@ const items = (state = initialState, action) => {
         getNextDefaultItem(ItemTypes.NUMBER_RESULT, action, state.length)
       ];
     case ActionTypes.CHANGE_FORMULA:
-    return state.map(
+      const newState = state.map(
       (item) => {
         let newItem = Object.assign({}, item);
         if (item.id === action.id) {
@@ -87,23 +100,20 @@ const items = (state = initialState, action) => {
         }
         return newItem;
       });
+      return _updateResults(newState, _nameToItemMapping(newState));
     case ActionTypes.CALCULATABLE_VALUE_CHANGED:
       console.log('reducer CALCULATABLE_VALUE_CHANGED');
       console.log(state); console.log(action);
-      let nameToItemMapping = {};
-      const newState = state.map(
+      const ns = state.map(
         (item) => {
           let newItem = Object.assign({}, item);
-          // 1. update value of changed item
           if (item.id === action.id) {
             newItem.value = action.value;
           }
-          nameToItemMapping[ item.itemName] = newItem;
           return newItem;
         });
-        // 2. recalculate all formulas
-        console.log('newState:', newState);
-        return _updateResults(newState, nameToItemMapping);
+
+        return _updateResults(ns, _nameToItemMapping(ns));
     case ActionTypes.LAYOUT_CHANGED:
       return state;
     case ActionTypes.CHANGE_ITEM_HEADER:

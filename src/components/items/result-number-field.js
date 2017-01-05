@@ -3,8 +3,6 @@ import                      './number-field.css';
 import ItemHeader           from './item-header';
 
 const ResultItem = ({itemName, itemText, result, onRemoveItem}) => {
-  let numberInput;
-
   return (
     <div className="number-item">
       <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
