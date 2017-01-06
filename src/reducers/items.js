@@ -1,6 +1,6 @@
 import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
-
+import Math from 'mathjs';
 
 const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
   let ret = {
@@ -48,7 +48,8 @@ const _updateResults = (state, namesToItems) => {
       });
       console.log('new formula', formula);
       try {
-        item.value = eval(formula);
+        //item.value = eval(formula);
+        item.value = Math.eval(formula);
       } catch (err) {
         console.log('the formula is invalid');
         item.value = 0;
