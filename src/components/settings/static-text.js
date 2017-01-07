@@ -1,11 +1,12 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
-import { changeItemName, changeItemText } from './../../actions';
 import { InputGroup, FormControl } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 
-const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
+import { changeItemName, changeItemText } from './../../actions';
+import ColorPickerContainer from './../../containers/color-picker.js'
 
+const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   return (
     <div className="text-item">
       <form>
@@ -25,6 +26,7 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
             placeholder="Enter new item text..."/>
         </InputGroup>
       </form>
+      <ColorPickerContainer />
     </div>
   );
 };

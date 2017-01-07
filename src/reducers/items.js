@@ -1,63 +1,7 @@
 import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
-import Math from 'mathjs';
+import {getNextDefaultItem, mapNamesToItems, updateFormulaResults} from './utils';
 
-const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
-  let ret = {
-    id: action.id,
-    type: type,
-    itemName: action.itemName,
-    text: action.text,
-    value: action.value,
-    formula: action.formula,
-    isSelected: true,
-    bgcolor: '#cecece',
-    w: 12,
-    h: 1,
-    x: 0,
-    y: numberOfCurrentItems + 1,
-  }
-
-  return ret;
-}
-
-const _nameToItemMapping = (state) => {
-  let nameToItemMapping = {};
-  state.forEach(item => {
-    nameToItemMapping[ item.itemName] = item;
-  });
-  return nameToItemMapping;
-}
-
-const _updateResults = (state, namesToItems) => {
-  console.log('_updateResults');
-  console.log('namesToItems', namesToItems);
-  return state.map((item) => {
-    if (item.type === ItemTypes.NUMBER_RESULT && item.formula) {
-      // re-calculate result value based on formula
-      let formula = item.formula;
-      const operands = item.formula.split(/[\+\-\s]/);
-      console.log('operands', operands);
-      operands.forEach((name) => {
-        console.log('operand-name', name);
-        if (typeof name === 'string' && name !== "" && Number.isNaN(parseFloat(name, 10))) {
-          if (namesToItems[ name]) {
-            formula = formula.replace(name, namesToItems[ name].value);
-          }
-        }
-      });
-      console.log('new formula', formula);
-      try {
-        //item.value = eval(formula);
-        item.value = Math.eval(formula);
-      } catch (err) {
-        console.log('the formula is invalid');
-        item.value = 0;
-      }
-    }
-    return item;
-  });
-};
 
 const initialState = [
   getNextDefaultItem(ItemTypes.STAGE,
@@ -101,7 +45,7 @@ const items = (state = initialState, action) => {
         }
         return newItem;
       });
-      return _updateResults(newState, _nameToItemMapping(newState));
+      return updateFormulaResults(newState, mapNamesToItems(newState));
     case ActionTypes.CALCULATABLE_VALUE_CHANGED:
       console.log('reducer CALCULATABLE_VALUE_CHANGED');
       console.log(state); console.log(action);
@@ -114,7 +58,7 @@ const items = (state = initialState, action) => {
           return newItem;
         });
 
-        return _updateResults(ns, _nameToItemMapping(ns));
+        return updateFormulaResults(ns, mapNamesToItems(ns));
     case ActionTypes.LAYOUT_CHANGED:
       return state;
     case ActionTypes.CHANGE_ITEM_HEADER:
@@ -132,6 +76,17 @@ const items = (state = initialState, action) => {
           let newItem = Object.assign({}, item);
           if (item.id === action.id) {
             newItem.text = action.text;
+          }
+          return newItem;
+        });
+    case ActionTypes.CHANGE_ITEM_SETTINGS:
+      console.log('reducer CHANGE_ITEM_SETTINGS', action);
+      return state.map(
+        (item) => {
+          let newItem = Object.assign({}, item);
+          if (item.id === action.id) {
+            // TODO copy all props
+            newItem.bgcolor = action.props.bgcolor;
           }
           return newItem;
         });

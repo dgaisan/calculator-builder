@@ -17,7 +17,7 @@ TextItem.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
   itemName:     PropTypes.string.isRequired,
   itemText:     PropTypes.string.isRequired,
-  itemStyle:    PropTypes.string,
+  itemStyle:    PropTypes.object,
 }
 
 export default TextItem;

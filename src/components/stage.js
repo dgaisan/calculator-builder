@@ -104,21 +104,21 @@ class Stage extends Component {
       if (item.id === selectedItem) {
         style = {
           ...basicStyle,
-          boxSizing: 'border-box',
-          MozBoxSizing: 'border-box',
-          WebkitBoxSizing: 'border-box',
-          border: '2px solid #f00',
+          //boxSizing: 'border-box',
+          //MozBoxSizing: 'border-box',
+          //WebkitBoxSizing: 'border-box',
+          //border: '2px solid #f00',
+          backgroundColor: item.bgcolor,
         }
       }
       const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
       let itemView = null;
-      console.log('rendering stage');
-      console.log('item', item);
 
       switch (item.type) {
         case ItemTypes.STATIC_TEXT:
           itemView = <TextItem itemName={item.itemName}
             itemText={item.text}
+            itemStyle={style}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         case ItemTypes.NUMBER_FIELD:
@@ -161,7 +161,7 @@ class Stage extends Component {
           onDragStart={this.onDragStart}
           onDragStop={this.onDragStop}
           onResizeStop={this.onResizeStop}
-          rowHeight={50}>
+          rowHeight={70}>
             {itemsDivs}
         </ResponsiveReactGridLayout>
       </div>
@@ -176,8 +176,6 @@ Stage.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('Stage->mapStateToProps');
-  console.log(state);
   return {
     items: state.items.filter((item) => (item.type !== ItemTypes.STAGE)),
     selectedItem: state.selectedItem,

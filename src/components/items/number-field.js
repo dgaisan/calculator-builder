@@ -1,21 +1,19 @@
 import React, {PropTypes}   from 'react';
+import { InputGroup, FormControl } from 'react-bootstrap';
 import                      './number-field.css';
 import ItemHeader           from './item-header';
 
 const NumberItem = ({item, itemName, itemText, number, onNumberChanged, onRemoveItem}) => {
-  let numberInput;
-
   return (
     <div className="number-item">
       <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
-      <div className="content">
-        <p>{itemText}</p>
-        <input type="text" value={item.number}
-            ref={node => { numberInput = node; }}
-            onChange={() => {onNumberChanged(numberInput.value, item.id)}}
-        />
-      </div>
-      <span className="remove" onClick={onRemoveItem}>x</span>
+      <InputGroup>
+        <InputGroup.Addon>{itemText}</InputGroup.Addon>
+        <FormControl type="text"
+          value={number}
+          onChange={(e) => { onNumberChanged(e.target.value, item.id); }}
+          placeholder="Enter a number"/>
+      </InputGroup>
     </div>
   );
 };
