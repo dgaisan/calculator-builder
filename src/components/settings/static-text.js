@@ -26,7 +26,12 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
             placeholder="Enter new item text..."/>
         </InputGroup>
       </form>
-      <ColorPickerContainer />
+      <br />
+      <ColorPickerContainer property="bgcolor"
+        text="Background Color"/>
+      <br />
+      <ColorPickerContainer property="fontcolor"
+        text="Font Color"/>
     </div>
   );
 };

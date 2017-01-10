@@ -86,7 +86,13 @@ const items = (state = initialState, action) => {
           let newItem = Object.assign({}, item);
           if (item.id === action.id) {
             // TODO copy all props
-            newItem.bgcolor = action.props.bgcolor;
+            // newItem.bgcolor = action.props.bgcolor;
+            Object.keys(action.props).forEach((prop) => {
+              if (prop !== 'type' && prop !== 'id') {
+                console.log('found a property!', prop, action.props[ prop]);
+                newItem[ prop] = action.props[ prop];
+              }
+            });
           }
           return newItem;
         });

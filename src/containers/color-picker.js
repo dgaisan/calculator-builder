@@ -7,8 +7,9 @@ import ColorPicker from './../components/settings/color-picker';
 class ColorPickerContainer extends React.Component {
   constructor(props) {
     super(props);
+    this.property = this.props.property;
     this.state = {
-      color: props.bgColor || '#0000000',
+      color: this.props.item[ this.property] || '#0000000',
       showColorPicker: false,
     }
   }
@@ -19,7 +20,9 @@ class ColorPickerContainer extends React.Component {
 
   _handleColorChange = (color) => {
     this.setState({ color: color.hex });
-    this.props.changeColor({bgcolor: this.state.color}, this.props.itemId);
+    let payload = {};
+    payload[ this.property] = this.state.color;
+    this.props.changeColor(payload, this.props.item.id);
   }
 
   _handleClose = () => {
@@ -32,7 +35,7 @@ class ColorPickerContainer extends React.Component {
         <ColorPicker
           color={this.state.color}
           show={this.state.showColorPicker}
-          text="Background Color"
+          text={this.props.text}
           onClick={this._handleClick}
           onClose={this._handleClose}
           onColorChange={this._handleColorChange} />
@@ -42,8 +45,9 @@ class ColorPickerContainer extends React.Component {
 }
 
 ColorPickerContainer.propTypes = {
-  bgColor: PropTypes.string.isRequired,
-  itemId: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
+  property: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired
 }
 
 const mapDispatchToProps = dispatch => {
@@ -54,10 +58,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   const item = state.items.find(item => (item.id === state.selectedItem));
-  return {
-    bgColor: item.bgcolor,
-    itemId: item.id,
-  }
+  return { item };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ColorPickerContainer);
