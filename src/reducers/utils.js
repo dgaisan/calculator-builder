@@ -10,7 +10,14 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     value: action.value,
     formula: action.formula,
     isSelected: true,
-    bgcolor: '#cecece',
+
+    // settings
+    bgcolor: '#603da1',
+    fontcolor: '#d4a24e',
+    fontname: 'Serif',
+    
+
+    // Transform
     w: 12,
     h: 1,
     x: 0,

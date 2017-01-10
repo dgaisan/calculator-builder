@@ -14,7 +14,6 @@ const ResponsiveReactGridLayout = WidthProvider(Responsive);
 class Stage extends Component {
   constructor(props) {
     super(props);
-    console.log('Stage->constructor');
     this.state = {
       mounted: false,
       layouts: this._getLayouts(props.items)
@@ -22,7 +21,6 @@ class Stage extends Component {
   }
 
   _getLayouts = (items) => {
-    console.log('Getting Laoyouts', items);
     return items.map(item => {
       let {i, x, y, w, h} = item;
       i = String(i);
@@ -31,7 +29,6 @@ class Stage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-
     const layouts = this.state.layouts;
     const newLayouts = this._getLayouts(nextProps.items);
 
@@ -51,8 +48,6 @@ class Stage extends Component {
         }
       });
     }
-
-    console.log('layoutChangedFlag', layoutChangedFlag);
 
     if (layoutChangedFlag) {
       this.setState({layouts: newLayouts});
@@ -96,19 +91,23 @@ class Stage extends Component {
 
   render() {
     const { items, selectedItem, dispatch } = this.props;
-    let basicStyle = {
-      backgroundColor: '#ffffff'
-    };
     const itemsDivs = items.map((item) => {
-      let style = basicStyle;
+      let boxStyle = {
+        boxSizing: 'border-box',
+        MozBoxSizing: 'border-box',
+        WebkitBoxSizing: 'border-box',
+        border: '1px solid #000000',
+        backgroundColor: item.bgcolor,
+      };
+      let itemStyle = {
+        backgroundColor: item.bgcolor,
+        fontFamily: item.fontname,
+        color: item.fontcolor
+      }
       if (item.id === selectedItem) {
-        style = {
-          ...basicStyle,
-          //boxSizing: 'border-box',
-          //MozBoxSizing: 'border-box',
-          //WebkitBoxSizing: 'border-box',
-          //border: '2px solid #f00',
-          backgroundColor: item.bgcolor,
+        boxStyle = {
+          ...boxStyle,
+          border: '2px solid #f00',
         }
       }
       const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
@@ -118,19 +117,21 @@ class Stage extends Component {
         case ItemTypes.STATIC_TEXT:
           itemView = <TextItem itemName={item.itemName}
             itemText={item.text}
-            itemStyle={style}
+            itemStyle={itemStyle}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         case ItemTypes.NUMBER_FIELD:
           itemView = <NumberItem itemName={item.itemName}
             item={item}
             itemText={item.text}
+            itemStyle={itemStyle}
             number={item.value}
             onNumberChanged={(value, itemId)=>{ console.log('number field changed', value, itemId); dispatch(calculatableValueChanged(value, itemId))} }
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         case ItemTypes.NUMBER_RESULT:
           itemView = <ResultItem itemName={item.itemName}
+            itemStyle={itemStyle}
             itemText={item.text}
             result={item.value}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
@@ -139,7 +140,7 @@ class Stage extends Component {
       }
 
       return (
-        <div style={style}
+        <div style={boxStyle}
           key={item.id}
 
           data-grid={datagrid} >
