@@ -11,6 +11,9 @@ import ResultItem                       from './items/result-number-field';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
+// hardcoded css class names of stage
+const stageCssClasses = ['Stage', 'react-grid-layout layout'];
+
 class Stage extends Component {
   constructor(props) {
     super(props);
@@ -82,7 +85,10 @@ class Stage extends Component {
   }
 
   onStageClicked = (e) => {
-    //this.props.dispatch(itemSelected(0));
+    const clickedClassName = e.target.className;
+    if (clickedClassName && ~stageCssClasses.indexOf(clickedClassName)) {
+      this.props.dispatch(itemSelected(0));
+    }
   }
 
   onRemoveItem = itemId => {
@@ -90,7 +96,14 @@ class Stage extends Component {
   }
 
   render() {
-    const { items, selectedItem, dispatch } = this.props;
+    const { items, selectedItem, dispatch, stageItem } = this.props;
+    console.log('rendering Stage');
+    console.log(items);
+
+    const stageStyle = {
+      backgroundColor: stageItem.bgcolor,
+    }
+
     const itemsDivs = items.map((item) => {
       let boxStyle = {
         boxSizing: 'border-box',
@@ -150,7 +163,7 @@ class Stage extends Component {
     });
 
     return (
-      <div className="Stage" onClick={this.onStageClicked}>
+      <div className="Stage" style={stageStyle} onClick={this.onStageClicked}>
         <ResponsiveReactGridLayout
           className="layout"
           layouts={{lg: this.state.layouts}}
@@ -178,6 +191,7 @@ Stage.propTypes = {
 
 const mapStateToProps = (state) => {
   return {
+    stageItem: state.items.find(item => item.id === 0),
     items: state.items.filter((item) => (item.type !== ItemTypes.STAGE)),
     selectedItem: state.selectedItem,
   };

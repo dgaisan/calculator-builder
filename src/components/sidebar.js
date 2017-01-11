@@ -7,15 +7,10 @@ import AddNewItem         from './addnewitem';
 import StaticTextSettings from './settings/static-text';
 import NumberFieldSettings from './settings/number-field';
 import NumberResultSettings from './settings/number-result';
-
-const defaultView = () => (
-  <div>
-    Actual properties displayed here.
-  </div>
-);
+import StageSettings from './settings/stage';
 
 let Sidebar = ({itemType, selectedItem}) => {
-  let currentSettingsView = defaultView();
+  let currentSettingsView = <StageSettings />;
   let title = '';
 
   switch (itemType) {
