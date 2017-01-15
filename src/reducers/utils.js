@@ -15,7 +15,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     bgcolor: '#603da1',
     fontcolor: '#d4a24e',
     fontname: 'Serif',
-    
+
 
     // Transform
     w: 12,
@@ -25,6 +25,18 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
   }
 
   return ret;
+}
+
+export const getDefaultStage = () => {
+  let stageItem = getNextDefaultItem(ItemTypes.STAGE, {id: 0}, 0);
+  stageItem = {
+    ...stageItem,
+    bgcolor: '#807c73',
+    width: 600,
+    height: 400,
+  }
+
+  return stageItem;
 }
 
 /**

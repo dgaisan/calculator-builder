@@ -1,7 +1,8 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
 import './../../styles/bootstrap.css';
-import ColorPickerContainer from './../../containers/color-picker.js'
+import ColorPickerContainer from './../../containers/color-picker';
+import ItemSizeContainer from './../../containers/item-size';
 
 const StageSettings = () => {
   return (
@@ -9,6 +10,8 @@ const StageSettings = () => {
       <ColorPickerContainer property="bgcolor"
         text="Background Color"/>
       <br />
+      <ItemSizeContainer widthText="Stage Width"
+        heightText="Stage Height" />
     </div>
   );
 };

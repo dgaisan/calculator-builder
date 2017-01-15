@@ -1,18 +1,9 @@
 import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
-import {getNextDefaultItem, mapNamesToItems, updateFormulaResults} from './utils';
+import {getNextDefaultItem, getDefaultStage, mapNamesToItems, updateFormulaResults} from './utils';
 
 
-const initialState = [
-  getNextDefaultItem(ItemTypes.STAGE,
-    {
-      id: 0,
-      itemName: 'Default Header',
-      text: 'Default Text',
-      formula: '',
-      value: 0.0,
-    }, 0)
-];
+const initialState = [ getDefaultStage() ];
 
 const items = (state = initialState, action) => {
   switch (action.type) {

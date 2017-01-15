@@ -4,7 +4,7 @@ import { InputGroup, FormControl } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 
 import { changeItemName, changeItemText } from './../../actions';
-import ColorPickerContainer from './../../containers/color-picker.js'
+import ColorPickerContainer from './../../containers/color-picker.js';
 
 const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   return (

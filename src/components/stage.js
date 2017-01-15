@@ -101,6 +101,8 @@ class Stage extends Component {
     console.log(items);
 
     const stageStyle = {
+      margin: '0 auto',
+      width: stageItem.width,
       backgroundColor: stageItem.bgcolor,
     }
 

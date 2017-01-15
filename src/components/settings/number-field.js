@@ -3,6 +3,7 @@ import { connect }          from 'react-redux';
 import { changeItemName, changeItemText } from './../../actions';
 import { InputGroup, FormControl } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
+import ColorPickerContainer from './../../containers/color-picker.js'
 
 const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged}) => {
 
@@ -25,6 +26,12 @@ const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged}) => {
             placeholder="Enter new item text..."/>
         </InputGroup>
       </form>
+      <br />
+      <ColorPickerContainer property="bgcolor"
+        text="Background Color"/>
+      <br />
+      <ColorPickerContainer property="fontcolor"
+        text="Font Color"/>
     </div>
   );
 };
