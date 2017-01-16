@@ -62,7 +62,7 @@ export const updateFormulaResults = (state, namesToItems) => {
       console.log('operands', operands);
       operands.forEach((name) => {
         console.log('operand-name', name);
-        if (typeof name === 'string' && name !== "" && Number.isNaN(parseFloat(name, 10))) {
+        if (typeof name === 'string' && name !== "" && isNaN(parseFloat(name, 10))) {
           if (namesToItems[ name]) {
             formula = formula.replace(name, namesToItems[ name].value);
           }
