@@ -114,7 +114,11 @@ class Stage extends Component {
         fontFamily: item.fontname,
         color: item.fontcolor,
         textAlign: item.textAlign,
+        fontWeight: item.textBold ? 'bold' : 'normal',
+        fontStyle: item.textItalic ? 'italic' : 'normal',
+        textDecoration: item.textUnderscore ? 'underline' : '',
       }
+      console.log('itemStyle', itemStyle);
       if (item.id === selectedItem) {
         boxStyle = {
           ...boxStyle,

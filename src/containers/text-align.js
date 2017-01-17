@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { changeItemSettings } from './../actions';
-import './../styles/bootstrap.css';
 import TextAlign from './../components/settings/text-align';
 import Align from './../constants/settings';
 
@@ -9,7 +8,7 @@ class TextAlignContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: Align.LEFT
+      selected: props.item.textAlign || Align.LEFT
     };
   }
 
@@ -31,9 +30,6 @@ class TextAlignContainer extends React.Component {
         </div>
         <div className="col-md-8">
           <TextAlign
-            leftText="Left"
-            middleText="Center"
-            rightText="Right"
             selected={this.state.selected}
             onClick={this.handleClick} />
         </div>

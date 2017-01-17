@@ -1,11 +1,10 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
 import { InputGroup, FormControl } from 'react-bootstrap';
-import './../../styles/bootstrap.css';
-
 import { changeItemName, changeItemText } from './../../actions';
-import ColorPickerContainer from './../../containers/color-picker.js';
-import TextAlignContainer from './../../containers/text-align.js';
+import ColorPickerContainer from './../../containers/color-picker';
+import TextAlignContainer from './../../containers/text-align';
+import TextThicknessContainer from './../../containers/text-thickness';
 
 const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   return (
@@ -34,6 +33,7 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
       <ColorPickerContainer property="fontcolor"
         text="Font Color"/>
       <TextAlignContainer />
+      <TextThicknessContainer />
     </div>
   );
 };

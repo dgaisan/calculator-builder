@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
-    "react-scripts": "0.8.4"
+    "react-scripts": "0.8.4",
+    "react-tap-event-plugin": "^2.0.1"
   },
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "mathjs": "^3.8.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
