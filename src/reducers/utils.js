@@ -52,26 +52,22 @@ export const mapNamesToItems = (state) => {
 }
 
 export const updateFormulaResults = (state, namesToItems) => {
-  console.log('_updateResults');
-  console.log('namesToItems', namesToItems);
   return state.map((item) => {
     if (item.type === ItemTypes.NUMBER_RESULT && item.formula) {
       // re-calculate result value based on formula
       let formula = item.formula;
       const operands = item.formula.split(/[\+\-\s]/);
-      console.log('operands', operands);
       operands.forEach((name) => {
-        console.log('operand-name', name);
         if (typeof name === 'string' && name !== "" && isNaN(parseFloat(name, 10))) {
           if (namesToItems[ name]) {
             formula = formula.replace(name, namesToItems[ name].value);
           }
         }
       });
-      console.log('new formula', formula);
       try {
         //item.value = eval(formula);
         item.value = Math.eval(formula);
+        console.log('new result item value is', item.value);
       } catch (err) {
         console.log('the formula is invalid');
         item.value = 0;
