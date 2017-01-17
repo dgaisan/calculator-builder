@@ -3,7 +3,7 @@ import { connect }                      from 'react-redux';
 import { Responsive, WidthProvider }    from 'react-grid-layout';
 import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
-import { calculatableValueChanged }     from './../actions'
+import { calculatableValueChanged, removeItem, layoutChanged } from './../actions'
 import './stage.css';
 import TextItem                         from './items/static-text';
 import NumberItem                       from './items/number-field';
@@ -11,12 +11,13 @@ import ResultItem                       from './items/result-number-field';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
-// hardcoded css class names of stage
+// hardcoded css class names that belong to stage
 const stageCssClasses = ['Stage', 'react-grid-layout layout'];
 
 class Stage extends Component {
   constructor(props) {
     super(props);
+    console.log('constructor');
     this.state = {
       mounted: false,
       layouts: this._getLayouts(props.items)
@@ -32,11 +33,12 @@ class Stage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps);
     const layouts = this.state.layouts;
     const newLayouts = this._getLayouts(nextProps.items);
 
-    // decide whether ot not local state should be updated.
-    // if item layputs changed then need to re-set layouts prop
+    // decide whether or not local state should be updated.
+    // if item layouts changed then need to re-set layouts prop
     let layoutChangedFlag = false;
 
     if (newLayouts.length !== layouts.length) {
@@ -77,11 +79,9 @@ class Stage extends Component {
     // TODO: update layout
   }
 
-  onResizeStop = (param1, layoutItem) => {
-    console.log('onResizeStop');
-    console.log('param1', param1);
-    console.log('layoutItem', layoutItem);
-    // TODO: update layout
+  onResizeStop = (layouts, layoutItem) => {
+    console.log('onResizeStop', layouts);
+    this.props.dispatch(layoutChanged(layouts));
   }
 
   onStageClicked = (e) => {
@@ -93,6 +93,7 @@ class Stage extends Component {
 
   onRemoveItem = itemId => {
     console.log('removing item', itemId);
+    this.props.dispatch(removeItem(itemId));
   }
 
   render() {

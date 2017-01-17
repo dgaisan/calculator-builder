@@ -75,7 +75,6 @@ it('Populates proper mapping of item names to item objects', () => {
   expect(result[ '__random']).not.toBe(item1);
 });
 
-
 it('Updates formula results', () => {
   const name1 = 'item1', name2 = 'item2', name3 = 'item3';
   const val1 = 11, val2 = 23;

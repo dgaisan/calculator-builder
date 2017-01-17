@@ -7,26 +7,36 @@ const initialState = [ getDefaultStage() ];
 
 const items = (state = initialState, action) => {
   switch (action.type) {
+    case ActionTypes.REMOVE_ITEM:
+      const newstate = state.filter(item => (item.id !== action.id));
+      console.log('reducer->removing item');
+      console.log(newstate); 
+      return newstate
+
     case ActionTypes.ITEM_SELECTED:
       return state.map(
         item => Object.assign({}, item, {
           isSelected: action.id === item.id ? true : false
         }));
+
     case ActionTypes.ADD_STATIC_TEXT:
       return [
         ...state,
         getNextDefaultItem(ItemTypes.STATIC_TEXT, action, state.length)
       ];
+
     case ActionTypes.ADD_NUMBER_FIELD:
       return [
         ...state,
         getNextDefaultItem(ItemTypes.NUMBER_FIELD, action, state.length)
       ];
+
     case ActionTypes.ADD_NUMBER_RESULT_FIELD:
       return [
         ...state,
         getNextDefaultItem(ItemTypes.NUMBER_RESULT, action, state.length)
       ];
+
     case ActionTypes.CHANGE_FORMULA:
       const newState = state.map(
       (item) => {
@@ -37,9 +47,8 @@ const items = (state = initialState, action) => {
         return newItem;
       });
       return updateFormulaResults(newState, mapNamesToItems(newState));
+
     case ActionTypes.CALCULATABLE_VALUE_CHANGED:
-      console.log('reducer CALCULATABLE_VALUE_CHANGED');
-      console.log(state); console.log(action);
       const ns = state.map(
         (item) => {
           let newItem = Object.assign({}, item);
@@ -50,8 +59,11 @@ const items = (state = initialState, action) => {
         });
 
         return updateFormulaResults(ns, mapNamesToItems(ns));
+
     case ActionTypes.LAYOUT_CHANGED:
+      // TODO
       return state;
+
     case ActionTypes.CHANGE_ITEM_HEADER:
       return state.map(
         (item) => {

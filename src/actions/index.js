@@ -29,6 +29,11 @@ export const addNumberResultField = (formula = '') => ({
   text: DEFAULT_TEXT,
 });
 
+export const removeItem = id => ({
+  type: ActionTypes.REMOVE_ITEM,
+  id: id,
+});
+
 export const itemSelected = (id) => ({
   type: ActionTypes.ITEM_SELECTED,
   id: id,
@@ -58,7 +63,7 @@ export const changeFormula = (formula = '', itemId) => ({
   id: itemId,
 });
 
-export const changeLayout = (layouts) => ({
+export const layoutChanged = (layouts) => ({
   type: ActionTypes.LAYOUT_CHANGED,
   layouts: layouts,
 });
