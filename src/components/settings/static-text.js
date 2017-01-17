@@ -5,6 +5,7 @@ import './../../styles/bootstrap.css';
 
 import { changeItemName, changeItemText } from './../../actions';
 import ColorPickerContainer from './../../containers/color-picker.js';
+import TextAlignContainer from './../../containers/text-align.js';
 
 const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   return (
@@ -32,6 +33,7 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
       <br />
       <ColorPickerContainer property="fontcolor"
         text="Font Color"/>
+      <TextAlignContainer />
     </div>
   );
 };

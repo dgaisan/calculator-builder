@@ -112,7 +112,8 @@ class Stage extends Component {
       let itemStyle = {
         backgroundColor: item.bgcolor,
         fontFamily: item.fontname,
-        color: item.fontcolor
+        color: item.fontcolor,
+        textAlign: item.textAlign,
       }
       if (item.id === selectedItem) {
         boxStyle = {

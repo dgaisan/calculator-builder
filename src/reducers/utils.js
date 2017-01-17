@@ -15,6 +15,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     bgcolor: '#603da1',
     fontcolor: '#d4a24e',
     fontname: 'Serif',
+    textAlign: 'left',
 
 
     // Transform
