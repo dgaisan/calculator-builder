@@ -6,11 +6,13 @@ import {getNextDefaultItem, getDefaultStage, mapNamesToItems, updateFormulaResul
 const initialState = [ getDefaultStage() ];
 
 const items = (state = initialState, action) => {
+  let newstate = [];
+
   switch (action.type) {
     case ActionTypes.REMOVE_ITEM:
-      const newstate = state.filter(item => (item.id !== action.id));
+      newstate = state.filter(item => (item.id !== action.id));
       console.log('reducer->removing item');
-      console.log(newstate); 
+      console.log(newstate);
       return newstate
 
     case ActionTypes.ITEM_SELECTED:
@@ -38,7 +40,7 @@ const items = (state = initialState, action) => {
       ];
 
     case ActionTypes.CHANGE_FORMULA:
-      const newState = state.map(
+      newstate = state.map(
       (item) => {
         let newItem = Object.assign({}, item);
         if (item.id === action.id) {
@@ -46,10 +48,10 @@ const items = (state = initialState, action) => {
         }
         return newItem;
       });
-      return updateFormulaResults(newState, mapNamesToItems(newState));
+      return updateFormulaResults(newstate, mapNamesToItems(newstate));
 
     case ActionTypes.CALCULATABLE_VALUE_CHANGED:
-      const ns = state.map(
+      newstate = state.map(
         (item) => {
           let newItem = Object.assign({}, item);
           if (item.id === action.id) {
@@ -58,11 +60,26 @@ const items = (state = initialState, action) => {
           return newItem;
         });
 
-        return updateFormulaResults(ns, mapNamesToItems(ns));
+        return updateFormulaResults(newstate, mapNamesToItems(newstate));
 
     case ActionTypes.LAYOUT_CHANGED:
-      // TODO
-      return state;
+      console.log('reducer->LAYOUT_CHANGED');
+      newstate = [ state.find(i => i.id === 0)];
+      action.layouts.forEach(layout => {
+        let item = state.find(i => i.id === parseInt(layout.i, 10));
+        console.log('layout', layout);
+        console.log('item', item);
+
+        if (item) {
+          item.x = layout.x;
+          item.y = layout.y;
+          item.w = layout.w;
+          item.h = layout.h;
+          newstate.push(item);
+        }
+      });
+      console.log('newstate', newstate);
+      return newstate;
 
     case ActionTypes.CHANGE_ITEM_HEADER:
       return state.map(

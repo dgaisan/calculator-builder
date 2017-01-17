@@ -33,7 +33,6 @@ class Stage extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('componentWillReceiveProps', nextProps);
     const layouts = this.state.layouts;
     const newLayouts = this._getLayouts(nextProps.items);
 
@@ -64,7 +63,7 @@ class Stage extends Component {
   }
 
   onLayoutChange = (layout, layouts) => {
-    console.log('Layout has changed');
+    // TODO encapsulate layout change logic here
   };
 
   // used to indicate selection of an item
@@ -72,15 +71,11 @@ class Stage extends Component {
     this.props.dispatch(itemSelected(parseInt(layoutItem.i, 10)));
   };
 
-  onDragStop = (param1, layoutItem) => {
-    console.log('onDragStop');
-    console.log('param1', param1);
-    console.log('layoutItem', layoutItem);
-    // TODO: update layout
+  onDragStop = (layouts, layoutItem) => {
+    this.props.dispatch(layoutChanged(layouts));
   }
 
   onResizeStop = (layouts, layoutItem) => {
-    console.log('onResizeStop', layouts);
     this.props.dispatch(layoutChanged(layouts));
   }
 
@@ -92,7 +87,6 @@ class Stage extends Component {
   }
 
   onRemoveItem = itemId => {
-    console.log('removing item', itemId);
     this.props.dispatch(removeItem(itemId));
   }
 

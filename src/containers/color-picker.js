@@ -58,6 +58,11 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => {
   const item = state.items.find(item => (item.id === state.selectedItem));
+
+  console.log('ColorPickerContainer->mapStateToProps');
+  console.log('state', state);
+  console.log('item', item);
+
   return { item };
 }
 
