@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, InputGroup, FormControl } from 'react-bootstrap';
+import { FormGroup, InputGroup, FormControl, ButtonGroup, Button } from 'react-bootstrap';
 import './../styles/bootstrap.css';
 import { changeItemSettings } from './../actions';
 
@@ -65,6 +65,10 @@ class ItemSizeContainer extends React.Component {
               value={this.state.width}
               onChange={(e) => { this.widthChanged(e.target.value); }}
               placeholder="Enter width value..."/>
+            <ButtonGroup bsSize="xsmall" vertical>
+              <Button>Up</Button>
+              <Button>Down</Button>
+            </ButtonGroup>
           </InputGroup>
         </FormGroup>
         <FormGroup
