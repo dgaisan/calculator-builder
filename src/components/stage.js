@@ -3,6 +3,7 @@ import { connect }                      from 'react-redux';
 import { Responsive, WidthProvider }    from 'react-grid-layout';
 import { itemSelected }                 from './../actions';
 import ItemTypes                        from './../constants/item-types';
+import {FontList as fontList}           from './../constants/settings';
 import { calculatableValueChanged, removeItem, layoutChanged } from './../actions'
 import './stage.css';
 import TextItem                         from './items/static-text';
@@ -90,8 +91,18 @@ class Stage extends Component {
     this.props.dispatch(removeItem(itemId));
   }
 
+  _resolveFontFamily = fontName => {
+    const font = fontList.find(i => i.name === fontName);
+    if (font) {
+      return font.family;
+    }
+
+    return fontName;
+  }
+
   render() {
     const { items, selectedItem, dispatch, stageItem } = this.props;
+    const that = this;
     console.log('rendering Stage');
     console.log(items);
 
@@ -111,7 +122,7 @@ class Stage extends Component {
       };
       let itemStyle = {
         backgroundColor: item.bgcolor,
-        fontFamily: item.fontname,
+        fontFamily: that._resolveFontFamily(item.fontname),
         color: item.fontcolor,
         textAlign: item.textAlign,
         fontWeight: item.textBold ? 'bold' : 'normal',
@@ -120,6 +131,7 @@ class Stage extends Component {
       }
       console.log('itemStyle', itemStyle);
       if (item.id === selectedItem) {
+        // highlighting selected item/box
         boxStyle = {
           ...boxStyle,
           border: '2px solid #f00',
@@ -187,6 +199,7 @@ class Stage extends Component {
 
 Stage.propTypes = {
   dispatch: PropTypes.func.isRequired,
+  stageItem: PropTypes.object.isRequired,
   items: PropTypes.array.isRequired,
   selectedItem: PropTypes.number.isRequired,
 }

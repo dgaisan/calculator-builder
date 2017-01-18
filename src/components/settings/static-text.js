@@ -5,6 +5,7 @@ import { changeItemName, changeItemText } from './../../actions';
 import ColorPickerContainer from './../../containers/color-picker';
 import TextAlignContainer from './../../containers/text-align';
 import TextThicknessContainer from './../../containers/text-thickness';
+import FontPickerContainer from './../../containers/font-picker';
 
 const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
   return (
@@ -34,6 +35,7 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
         text="Font Color"/>
       <TextAlignContainer />
       <TextThicknessContainer />
+      <FontPickerContainer/>
     </div>
   );
 };
