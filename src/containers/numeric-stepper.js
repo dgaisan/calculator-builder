@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { FormGroup, InputGroup, FormControl, ButtonGroup, Button } from 'react-bootstrap';
 import { changeItemSettings } from './../actions';
 import NumericStepper from './../components/settings/numeric-stepper';
 
@@ -12,27 +11,27 @@ class NumericStepperContainer extends React.Component {
     super(props);
 
     this.state = {
-      value: props.item[ props.propertyName] || 0
+      value: String(props.item[ props.propertyName] || 0)
     }
-    this.placeholder = placeholderText || '';
   }
+
+  isNumber = value => (!isNaN(value) && parseInt(value, 10) === value);
 
   isValueValid = value => {
     let result = true;
-    const {max, mix} = this.props;
+    const {max, min} = this.props;
 
-    // validating that value is number
-    result = result && !isNaN(value) && parseInt(value, 10) === value;
+    result = result && this.isNumber;
 
     if (typeof max === 'number') {
-      result = result && result <= max;
+      result = result && (value <= max);
     }
     if (typeof min === 'number') {
-      result = result && result >= min;
+      result = result && (value >= min);
     }
 
     return result;
-  }
+  };
 
   getValidationState = () => {
     if (this.isValueValid(Number(this.state.value))) {
@@ -44,29 +43,38 @@ class NumericStepperContainer extends React.Component {
   handleValueChanged = value => {
     this.setState({value: value});
     if (this.isValueValid(Number(value))) {
-      this.props.onValueChange({this.props.propertyName: parseInt(value, 10)}, this.props.itemId);
+      this.props.onValueChange({[this.props.propertyName]: parseInt(value, 10)}, this.props.itemId);
     }
   };
 
   handleUp = () => {
-    this.handleValueChanged(this.state.value + 1);
-  }
+    const {step = 1, max = 1200} = this.props;
+    const value = Number(this.state.value);
+
+    if (this.isNumber(value) && value + step <= max) {
+      this.handleValueChanged(String(value + step));
+    }
+  };
 
   handleDown = () => {
-    this.handleValueChanged(this.state.value - 1);
-  }
+    const {step = 1, min = 0} = this.props;
+    const value = Number(this.state.value);
+
+    if (this.isNumber(value) && value + step >= min) {
+      this.handleValueChanged(String(value - step));
+    }
+  };
 
   render() {
     const { title, placeholderText } = this.props;
-
     return (
       <form>
         <NumericStepper
           title={title}
           placeholderText={placeholderText || ''}
           value={this.state.value}
-          validationState={ this.getValidationState(); }
-          onChange={(e) => { this.handleValueChanged(e.target.value); }}
+          validationState={ this.getValidationState() }
+          onChange={(e) => { e.preventDefault(); this.handleValueChanged(e.target.value); }}
           onUp={this.handleUp}
           onDown={this.handleDown} />
       </form>

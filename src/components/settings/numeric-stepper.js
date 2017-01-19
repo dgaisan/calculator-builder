@@ -7,7 +7,7 @@ const NumericStepper = ({title, placeholderText, value, validationState, onChang
     height: '36px',
   };
   const stepperGroupStyle = {
-    display: 'tableCell',
+    display: 'table-cell',
   };
   const stepperButtonsStyle = {
     padding: '0px',
@@ -22,10 +22,11 @@ const NumericStepper = ({title, placeholderText, value, validationState, onChang
       <InputGroup>
         <InputGroup.Addon>{title}</InputGroup.Addon>
         <FormControl type="text"
+          style={textFormStyle}
           value={value}
           onChange={onChange}
           placeholder={placeholderText}/>
-        <ButtonGroup bsSize="xsmall" style={stepperGroupStyle} vertical>
+        <ButtonGroup vertical bsSize="xsmall" style={stepperGroupStyle}>
           <Button onClick={onUp} style={stepperButtonsStyle}>
             <Glyphicon glyph="glyphicon glyphicon-chevron-up"/>
           </Button>
@@ -41,8 +42,8 @@ const NumericStepper = ({title, placeholderText, value, validationState, onChang
 NumericStepper.propTypes = {
   title: PropTypes.string.isRequired,
   placeholderText: PropTypes.string.isRequired,
-  value: PropTypes.number.isRequired,
-  validationState: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  validationState: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
   onUp: PropTypes.func.isRequired,
   onDown: PropTypes.func.isRequired,

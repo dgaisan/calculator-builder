@@ -2,7 +2,7 @@ import React                from 'react';
 import { connect }          from 'react-redux';
 import './../../styles/bootstrap.css';
 import ColorPickerContainer from './../../containers/color-picker';
-import ItemSizeContainer from './../../containers/item-size';
+import NumericStepperContainer from './../../containers/numeric-stepper';
 
 const StageSettings = () => {
   return (
@@ -10,9 +10,23 @@ const StageSettings = () => {
       <ColorPickerContainer property="bgcolor"
         text="Background Color"/>
       <br />
-      <ItemSizeContainer widthText="Stage Width"
-        heightText="Stage Height" />
+
+      <NumericStepperContainer
+        title="Stage Width"
+        placeholderText="Enter Stage Width"
+        propertyName="width"
+        min={10}
+        max={1200}
+        step={1} />
+      <NumericStepperContainer
+        title="Stage Height"
+        placeholderText="Enter Stage Height"
+        propertyName="height"
+        min={10}
+        max={800}
+        step={1} />
     </div>
+
   );
 };
 
