@@ -23,7 +23,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
 
     // Transform
     w: 12,
-    h: 1,
+    h: 2,
     x: 0,
     y: numberOfCurrentItems + 1,
   }
