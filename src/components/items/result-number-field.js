@@ -1,5 +1,5 @@
 import React, {PropTypes}   from 'react';
-import                      './number-field.css';
+import './number-field.css';
 import ItemHeader           from './item-header';
 
 const ResultItem = ({itemName, itemText, result, onRemoveItem}) => {
@@ -7,8 +7,7 @@ const ResultItem = ({itemName, itemText, result, onRemoveItem}) => {
     <div className="number-item">
       <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
       <div className="content">
-        <p>{itemText}</p>
-        <input type="text" value={result} disabled />
+        {itemText} {result}
       </div>
       <span className="remove" onClick={onRemoveItem}>x</span>
     </div>

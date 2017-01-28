@@ -118,6 +118,7 @@ class Stage extends Component {
         MozBoxSizing: 'border-box',
         WebkitBoxSizing: 'border-box',
         border: '1px solid #000000',
+        boxShadow: '2px 2px 2px 2px rgba(0, 0, 0, 0.2)',
         backgroundColor: item.bgcolor,
       };
       let itemStyle = {

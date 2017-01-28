@@ -12,7 +12,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     isSelected: true,
 
     // settings
-    bgcolor: '#603da1',
+    bgcolor: '#ffffff',
     fontcolor: '#d4a24e',
     fontname: 'Arial',
     textAlign: 'left',
