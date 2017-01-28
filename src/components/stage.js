@@ -128,6 +128,8 @@ class Stage extends Component {
         fontWeight: item.textBold ? 'bold' : 'normal',
         fontStyle: item.textItalic ? 'italic' : 'normal',
         textDecoration: item.textUnderscore ? 'underline' : '',
+        position: 'fixed',
+        top: '45%',
       }
       console.log('itemStyle', itemStyle);
       if (item.id === selectedItem) {
