@@ -35,7 +35,7 @@ export const getDefaultStage = () => {
   let stageItem = getNextDefaultItem(ItemTypes.STAGE, {id: 0}, 0);
   stageItem = {
     ...stageItem,
-    bgcolor: '#807c73',
+    bgcolor: '#f2efe6',
     width: 600,
     height: 400,
   }
