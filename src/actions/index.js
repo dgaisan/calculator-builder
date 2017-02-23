@@ -51,6 +51,12 @@ export const changeItemText = (text = DEFAULT_TEXT, itemId) => ({
   id: itemId,
 });
 
+export const changeInputOrderedFirst = (isFirst = false, itemId) => ({
+  type: ActionTypes.CHANGE_INPUT_ORDER,
+  isFirst: isFirst,
+  id: itemId,
+});
+
 export const changeItemSettings = (props = {}, itemId) => ({
   type: ActionTypes.CHANGE_ITEM_SETTINGS,
   id: itemId,

@@ -1,20 +1,36 @@
 import React, {PropTypes}   from 'react';
-import { InputGroup, FormControl } from 'react-bootstrap';
 import                      './number-field.css';
 import ItemHeader           from './item-header';
+import InputAddon from './input-addon';
+import AddonInput from './addon-input';
 
 const NumberItem = ({item, itemName, itemText, number, itemStyle, onNumberChanged, onRemoveItem}) => {
+  let inputField;
+  if (item.inputFirst) {
+    inputField =
+      <InputAddon
+        itemId={item.id}
+        itemText={itemText}
+        value={number}
+        onNumberChanged={(val, id) => { onNumberChanged(val, id); }}
+        placeholder="Enter a number"
+      />;
+  } else {
+    inputField =
+      <AddonInput
+        itemId={item.id}
+        itemText={itemText}
+        value={number}
+        onNumberChanged={(val, id) => { onNumberChanged(val, id); }}
+        placeholder="Enter a number"
+      />;
+  }
+
   return (
     <div className="number-item">
       <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
       <div className="content" style={itemStyle}>
-        <InputGroup>
-          <InputGroup.Addon>{itemText}</InputGroup.Addon>
-          <FormControl type="text"
-            value={number}
-            onChange={(e) => { onNumberChanged(e.target.value, item.id); }}
-            placeholder="Enter a number"/>
-        </InputGroup>
+        {inputField}
       </div>
     </div>
   );

@@ -1,11 +1,11 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
-import { changeItemName, changeItemText } from './../../actions';
-import { InputGroup, FormControl } from 'react-bootstrap';
+import { changeItemName, changeItemText, changeInputOrderedFirst } from './../../actions';
+import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 import ColorPickerContainer from './../../containers/color-picker.js'
 
-const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged}) => {
+const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged, onInputOrderChanged}) => {
 
   return (
     <div className="text-item">
@@ -32,6 +32,12 @@ const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged}) => {
       <br />
       <ColorPickerContainer property="fontcolor"
         text="Font Color"/>
+      <br />
+      <Checkbox
+        checked={item.inputFirst}
+        onChange={e => { onInputOrderChanged(e.target.checked, item.id);}}>
+        Input First, Label second
+      </Checkbox>
     </div>
   );
 };
@@ -39,7 +45,8 @@ const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged}) => {
 const mapDispatchToProps = dispatch => {
   return {
     onItemNameChanged: (value, id) => (dispatch(changeItemName(value, id))),
-    onTextChanged: (value, id) => (dispatch(changeItemText(value, id)))
+    onTextChanged: (value, id) => (dispatch(changeItemText(value, id))),
+    onInputOrderChanged: (value, id) => (dispatch(changeInputOrderedFirst(value, id)))
   }
 }
 

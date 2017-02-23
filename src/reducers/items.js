@@ -99,6 +99,14 @@ const items = (state = initialState, action) => {
           }
           return newItem;
         });
+    case ActionTypes.CHANGE_INPUT_ORDER:
+      return state.map(item => {
+        let newItem = Object.assign({}, item);
+        if (item.id === action.id) {
+          newItem.inputFirst = action.isFirst;
+        }
+        return newItem;
+      });
     case ActionTypes.CHANGE_ITEM_SETTINGS:
       console.log('reducer CHANGE_ITEM_SETTINGS', action);
       return state.map(

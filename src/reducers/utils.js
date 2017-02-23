@@ -10,6 +10,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     value: action.value,
     formula: action.formula,
     isSelected: true,
+    inputFirst: false,
 
     // settings
     bgcolor: '#ffffff',
