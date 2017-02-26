@@ -17,6 +17,10 @@ const NumberItem = ({
     color: itemStyle.label_fontcolor,
     fontFamily: itemStyle.label_fontFamily
   };
+  const inputStyle = {
+    color: itemStyle.color,
+    fontFamily: itemStyle.fontFamily
+  };
 
   let inputField;
   if (item.inputFirst) {
@@ -25,7 +29,7 @@ const NumberItem = ({
         itemId={item.id}
         itemText={itemText}
         value={number}
-        inputStyle={itemStyle}
+        inputStyle={inputStyle}
         labelStyle={labelStyle}
         onNumberChanged={(val, id) => { onNumberChanged(val, id); }}
         placeholder="Enter a number"
@@ -35,7 +39,7 @@ const NumberItem = ({
       <AddonInput
         itemId={item.id}
         itemText={itemText}
-        itemStyle={itemStyle}
+        inputStyle={inputStyle}
         labelStyle={labelStyle}
         value={number}
         onNumberChanged={(val, id) => { onNumberChanged(val, id); }}

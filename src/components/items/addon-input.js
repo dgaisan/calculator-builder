@@ -13,7 +13,9 @@ const AddonInput = ({
 
   return (
     <InputGroup>
-      <InputGroup.Addon style={labelStyle}>{itemText}</InputGroup.Addon>
+      <InputGroup.Addon style={labelStyle}>
+        {itemText}
+      </InputGroup.Addon>
       <FormControl type="text"
         value={value}
         style={inputStyle}
