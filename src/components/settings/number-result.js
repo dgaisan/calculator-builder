@@ -3,12 +3,13 @@ import { connect }          from 'react-redux';
 import { changeItemName, changeItemText, changeFormula } from './../../actions';
 import { InputGroup, FormControl } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
+import ColorPickerContainer from './../../containers/color-picker.js'
 
 const NumberResultSettings = ({
   item,
   onTextChanged,
   onItemNameChanged,
-  onFormulaChanged}) => {
+  onFormulaChanged }) => {
 
   return (
     <div className="text-item">
@@ -35,6 +36,12 @@ const NumberResultSettings = ({
             onChange={(e) => { onFormulaChanged(e.target.value, item.id); }}
             placeholder="Enter new item text..."/>
         </InputGroup>
+        <ColorPickerContainer property="bgcolor"
+          text="Background Color"/>
+        <br />
+        <ColorPickerContainer property="fontcolor"
+          text="Font Color"/>
+        <br />
       </form>
     </div>
   );

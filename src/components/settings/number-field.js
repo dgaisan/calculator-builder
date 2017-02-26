@@ -5,7 +5,11 @@ import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 import ColorPickerContainer from './../../containers/color-picker.js'
 
-const NumberFieldSettings = ({item, onTextChanged, onItemNameChanged, onInputOrderChanged}) => {
+const NumberFieldSettings = ({
+  item,
+  onTextChanged,
+  onItemNameChanged,
+  onInputOrderChanged}) => {
 
   return (
     <div className="text-item">

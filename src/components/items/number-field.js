@@ -4,7 +4,15 @@ import ItemHeader           from './item-header';
 import InputAddon from './input-addon';
 import AddonInput from './addon-input';
 
-const NumberItem = ({item, itemName, itemText, number, itemStyle, onNumberChanged, onRemoveItem}) => {
+const NumberItem = ({
+  item,
+  itemName,
+  itemText,
+  number,
+  itemStyle,
+  onNumberChanged,
+  onRemoveItem }) => {
+
   let inputField;
   if (item.inputFirst) {
     inputField =
