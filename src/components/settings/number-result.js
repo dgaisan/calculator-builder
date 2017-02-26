@@ -29,6 +29,7 @@ const NumberResultSettings = ({
             onChange={(e) => { onTextChanged(e.target.value, item.id); }}
             placeholder="Enter new item text..."/>
         </InputGroup>
+        <br />
         <InputGroup>
           <InputGroup.Addon>Formula</InputGroup.Addon>
           <FormControl type="text"
@@ -36,6 +37,7 @@ const NumberResultSettings = ({
             onChange={(e) => { onFormulaChanged(e.target.value, item.id); }}
             placeholder="Enter new item text..."/>
         </InputGroup>
+        <br />
         <ColorPickerContainer property="bgcolor"
           text="Background Color"/>
         <br />

@@ -5,7 +5,8 @@ import './color-picker.css';
 import bgColorIcon from './../../resources/background-color-icon.png';
 
 const ColorPicker = ({color, show, text, onClick, onClose, onColorChange}) => {
-  const style = { backgroundColor: color};
+  const style = { backgroundColor: color},
+    rowStyle = {width: '100%'};
   let colorPickerPalette = null;
 
   if (show) {
@@ -19,7 +20,7 @@ const ColorPicker = ({color, show, text, onClick, onClose, onColorChange}) => {
   }
 
   return (
-    <div className="row color-picker">
+    <div className="row color-picker" style={rowStyle}>
       <div className="col-md-3">
         <img src={bgColorIcon} className="bg-icon" alt="logo" />
       </div>
