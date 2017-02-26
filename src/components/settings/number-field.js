@@ -34,8 +34,11 @@ const NumberFieldSettings = ({
       <ColorPickerContainer property="bgcolor"
         text="Background Color"/>
       <br />
+      <ColorPickerContainer property="label_fontcolor"
+        text="Label Font Color"/>
+      <br />
       <ColorPickerContainer property="fontcolor"
-        text="Font Color"/>
+        text="Input Font Color"/>
       <br />
       <Checkbox
         checked={item.inputFirst}

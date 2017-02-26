@@ -15,7 +15,9 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     // settings
     bgcolor: '#ffffff',
     fontcolor: '#d4a24e',
+    label_fontcolor: '#d4a24e',
     fontname: 'Arial',
+    label_fontname: 'Arial',
     textAlign: 'left',
     textBold: false,
     textItalic: false,

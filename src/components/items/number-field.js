@@ -13,6 +13,11 @@ const NumberItem = ({
   onNumberChanged,
   onRemoveItem }) => {
 
+  const labelStyle = {
+    color: itemStyle.label_fontcolor,
+    fontFamily: itemStyle.label_fontFamily
+  };
+
   let inputField;
   if (item.inputFirst) {
     inputField =
@@ -20,6 +25,8 @@ const NumberItem = ({
         itemId={item.id}
         itemText={itemText}
         value={number}
+        inputStyle={itemStyle}
+        labelStyle={labelStyle}
         onNumberChanged={(val, id) => { onNumberChanged(val, id); }}
         placeholder="Enter a number"
       />;
@@ -28,6 +35,8 @@ const NumberItem = ({
       <AddonInput
         itemId={item.id}
         itemText={itemText}
+        itemStyle={itemStyle}
+        labelStyle={labelStyle}
         value={number}
         onNumberChanged={(val, id) => { onNumberChanged(val, id); }}
         placeholder="Enter a number"
