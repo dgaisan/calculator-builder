@@ -37,6 +37,9 @@ const NumberFieldSettings = ({
       <ColorPickerContainer property="label_fontcolor"
         text="Label Font Color"/>
       <br />
+      <ColorPickerContainer property="input_backgroundColor"
+        text="Input Field Background Color"/>
+      <br />
       <ColorPickerContainer property="fontcolor"
         text="Input Font Color"/>
       <br />

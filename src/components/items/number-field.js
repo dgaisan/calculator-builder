@@ -19,7 +19,8 @@ const NumberItem = ({
   };
   const inputStyle = {
     color: itemStyle.color,
-    fontFamily: itemStyle.fontFamily
+    fontFamily: itemStyle.fontFamily,
+    backgroundColor: itemStyle.input_backgroundColor,
   };
 
   let inputField;

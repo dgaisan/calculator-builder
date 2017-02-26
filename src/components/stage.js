@@ -127,6 +127,7 @@ class Stage extends Component {
         label_fontFamily: that._resolveFontFamily(item.label_fontname),
         color: item.fontcolor,
         label_fontcolor: item.label_fontcolor,
+        input_backgroundColor: item.input_backgroundColor,
         textAlign: item.textAlign,
         fontWeight: item.textBold ? 'bold' : 'normal',
         fontStyle: item.textItalic ? 'italic' : 'normal',
