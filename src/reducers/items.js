@@ -11,8 +11,6 @@ const items = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.REMOVE_ITEM:
       newstate = state.filter(item => (item.id !== action.id));
-      console.log('reducer->removing item');
-      console.log(newstate);
       return newstate
 
     case ActionTypes.ITEM_SELECTED:
