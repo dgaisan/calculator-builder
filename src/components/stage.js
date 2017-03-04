@@ -18,7 +18,6 @@ const stageCssClasses = ['Stage', 'react-grid-layout layout'];
 class Stage extends Component {
   constructor(props) {
     super(props);
-    console.log('constructor');
     this.state = {
       mounted: false,
       layouts: this._getLayouts(props.items)
