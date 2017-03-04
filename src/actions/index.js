@@ -57,6 +57,12 @@ export const changeInputOrderedFirst = (isFirst = false, itemId) => ({
   id: itemId,
 });
 
+export const changeHiddenLabel = (labelHidden = false, itemId) => ({
+  type: ActionTypes.CHANGE_HIDDEN_LABEL,
+  labelHidden: labelHidden,
+  id: itemId,
+});
+
 export const changeItemSettings = (props = {}, itemId) => ({
   type: ActionTypes.CHANGE_ITEM_SETTINGS,
   id: itemId,

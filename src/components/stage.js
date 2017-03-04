@@ -167,6 +167,7 @@ class Stage extends Component {
             itemStyle={itemStyle}
             itemText={item.text}
             result={item.value}
+            item={item}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         default:

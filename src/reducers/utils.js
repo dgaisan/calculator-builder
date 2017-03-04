@@ -11,6 +11,7 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
     formula: action.formula,
     isSelected: true,
     inputFirst: false,
+    labelHidden: false,
 
     // settings
     bgcolor: '#ffffff',

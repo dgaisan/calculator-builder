@@ -1,7 +1,7 @@
 import React                from 'react';
 import { connect }          from 'react-redux';
-import { changeItemName, changeItemText, changeFormula } from './../../actions';
-import { InputGroup, FormControl } from 'react-bootstrap';
+import { changeItemName, changeItemText, changeFormula, changeHiddenLabel } from './../../actions';
+import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 import ColorPickerContainer from './../../containers/color-picker.js'
 
@@ -9,7 +9,8 @@ const NumberResultSettings = ({
   item,
   onTextChanged,
   onItemNameChanged,
-  onFormulaChanged }) => {
+  onFormulaChanged,
+  onLabelHideChanged }) => {
 
   return (
     <div className="text-item">
@@ -44,6 +45,11 @@ const NumberResultSettings = ({
         <ColorPickerContainer property="fontcolor"
           text="Font Color"/>
         <br />
+        <Checkbox
+          checked={item.labelHidden}
+          onChange={e => { onLabelHideChanged(e.target.checked, item.id);}}>
+          Hide Label
+        </Checkbox>
       </form>
     </div>
   );
@@ -54,6 +60,7 @@ const mapDispatchToProps = dispatch => {
     onItemNameChanged: (value, id) => (dispatch(changeItemName(value, id))),
     onTextChanged: (value, id) => (dispatch(changeItemText(value, id))),
     onFormulaChanged: (value, id) => (dispatch(changeFormula(value, id))),
+    onLabelHideChanged: (value, id) => (dispatch(changeHiddenLabel(value, id))),
   }
 }
 
