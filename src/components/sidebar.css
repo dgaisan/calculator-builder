@@ -2,7 +2,6 @@
   position: relative;
   width: 30%;
   height: 100%;
-  min-height: 400px;
-  background-color: #cecece;
-  border: #000 1px solid; 
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
 }

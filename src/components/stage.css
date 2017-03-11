@@ -3,8 +3,8 @@
   width: 70%;
   height: 100%;
   min-height: 400px;
-  background-color: cadetblue;
-  border-left: 1px solid #000000;
+  background-color: rgb(238, 238, 238);
+  border: 1px solid #000000;
 }
 
 .Stage .react-resizable-handle {
