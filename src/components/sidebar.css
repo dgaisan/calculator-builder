@@ -4,4 +4,5 @@
   height: 100%;
   min-height: 400px;
   background-color: #cecece;
+  border: #000 1px solid; 
 }
