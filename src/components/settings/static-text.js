@@ -6,8 +6,13 @@ import ColorPickerContainer from './../../containers/color-picker';
 import TextAlignContainer from './../../containers/text-align';
 import TextThicknessContainer from './../../containers/text-thickness';
 import FontPickerContainer from './../../containers/font-picker';
+import NumericStepperContainer from './../../containers/numeric-stepper';
 
-const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
+const StaticTextSettings = ({
+  item,
+  onTextChanged,
+  onItemNameChanged}) => {
+    
   return (
     <div className="text-item">
       <form>
@@ -36,6 +41,14 @@ const StaticTextSettings = ({item, onTextChanged, onItemNameChanged}) => {
       <TextAlignContainer />
       <TextThicknessContainer />
       <FontPickerContainer/>
+      <br />
+      <NumericStepperContainer
+        title="Font Size"
+        placeholderText="Enter Font Size"
+        propertyName="fontSize"
+        min={4}
+        max={99}
+        step={1} />
     </div>
   );
 };

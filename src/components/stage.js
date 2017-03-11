@@ -130,6 +130,7 @@ class Stage extends Component {
         textAlign: item.textAlign,
         fontWeight: item.textBold ? 'bold' : 'normal',
         fontStyle: item.textItalic ? 'italic' : 'normal',
+        fontSize: item.fontSize,
         textDecoration: item.textUnderscore ? 'underline' : '',
         position: 'fixed',
         top: '45%',

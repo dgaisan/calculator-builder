@@ -3,7 +3,7 @@ import { connect }          from 'react-redux';
 import { changeItemName, changeItemText, changeInputOrderedFirst } from './../../actions';
 import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
-import ColorPickerContainer from './../../containers/color-picker.js'
+import ColorPickerContainer from './../../containers/color-picker.js';
 
 const NumberFieldSettings = ({
   item,

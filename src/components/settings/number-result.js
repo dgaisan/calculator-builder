@@ -3,7 +3,8 @@ import { connect }          from 'react-redux';
 import { changeItemName, changeItemText, changeFormula, changeHiddenLabel } from './../../actions';
 import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
-import ColorPickerContainer from './../../containers/color-picker.js'
+import ColorPickerContainer from './../../containers/color-picker.js';
+import NumericStepperContainer from './../../containers/numeric-stepper';
 
 const NumberResultSettings = ({
   item,
@@ -50,6 +51,14 @@ const NumberResultSettings = ({
           onChange={e => { onLabelHideChanged(e.target.checked, item.id);}}>
           Hide Label
         </Checkbox>
+        <br />
+        <NumericStepperContainer
+          title="Font Size"
+          placeholderText="Enter Font Size"
+          propertyName="fontSize"
+          min={4}
+          max={99}
+          step={1} />
       </form>
     </div>
   );

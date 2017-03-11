@@ -15,16 +15,16 @@ export const getNextDefaultItem = (type, action, numberOfCurrentItems) => {
 
     // settings
     bgcolor: '#ffffff',
-    input_backgroundColor: '#ffffff',
     fontcolor: '#d4a24e',
-    label_fontcolor: '#d4a24e',
     fontname: 'Arial',
+    label_fontcolor: '#d4a24e',
     label_fontname: 'Arial',
+    input_backgroundColor: '#ffffff',
+    fontSize: 11,
     textAlign: 'left',
     textBold: false,
     textItalic: false,
     textUnderscore: false,
-
 
     // Transform
     w: 12,
