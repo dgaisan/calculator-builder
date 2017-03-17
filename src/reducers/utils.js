@@ -76,9 +76,7 @@ export const updateFormulaResults = (state, namesToItems) => {
       try {
         //item.value = eval(formula);
         item.value = Math.eval(formula);
-        console.log('new result item value is', item.value);
       } catch (err) {
-        console.log('the formula is invalid');
         item.value = 0;
       }
     }

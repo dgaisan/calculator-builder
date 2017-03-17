@@ -61,12 +61,9 @@ const items = (state = initialState, action) => {
         return updateFormulaResults(newstate, mapNamesToItems(newstate));
 
     case ActionTypes.LAYOUT_CHANGED:
-      console.log('reducer->LAYOUT_CHANGED');
       newstate = [ state.find(i => i.id === 0)];
       action.layouts.forEach(layout => {
         let item = state.find(i => i.id === parseInt(layout.i, 10));
-        console.log('layout', layout);
-        console.log('item', item);
 
         if (item) {
           item.x = layout.x;
@@ -76,7 +73,6 @@ const items = (state = initialState, action) => {
           newstate.push(item);
         }
       });
-      console.log('newstate', newstate);
       return newstate;
 
     case ActionTypes.CHANGE_ITEM_HEADER:
@@ -114,7 +110,6 @@ const items = (state = initialState, action) => {
         return newItem;
       });
     case ActionTypes.CHANGE_ITEM_SETTINGS:
-      console.log('reducer CHANGE_ITEM_SETTINGS', action);
       return state.map(
         (item) => {
           let newItem = Object.assign({}, item);

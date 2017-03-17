@@ -13,7 +13,6 @@ class FontPickerContainer extends React.Component {
   }
 
   handleSelect = (fontName) => {
-    console.log('+++New Font Selected+++', fontName);
     this.setState({fontname: fontName})
     this.props.changeFont({fontname: fontName}, this.props.item.id);
   }
