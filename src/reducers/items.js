@@ -2,7 +2,6 @@ import ItemTypes from './../constants/item-types';
 import ActionTypes from './../constants/action-types';
 import {getNextDefaultItem, getDefaultStage, mapNamesToItems, updateFormulaResults} from './utils';
 
-
 const initialState = [ getDefaultStage() ];
 
 const items = (state = initialState, action) => {
