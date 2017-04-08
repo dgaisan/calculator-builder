@@ -15,11 +15,13 @@ const NumberItem = ({
 
   const labelStyle = {
     color: itemStyle.label_fontcolor,
-    fontFamily: itemStyle.label_fontFamily
+    fontFamily: itemStyle.label_fontFamily,
+    fontSize: itemStyle.fontSize
   };
   const inputStyle = {
     color: itemStyle.color,
     fontFamily: itemStyle.fontFamily,
+    fontSize: itemStyle.fontSize,
     backgroundColor: itemStyle.input_backgroundColor,
   };
 

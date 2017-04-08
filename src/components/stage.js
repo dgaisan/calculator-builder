@@ -135,7 +135,6 @@ class Stage extends Component {
         position: 'fixed',
         top: '45%',
       }
-      console.log('itemStyle', itemStyle);
       if (item.id === selectedItem) {
         // highlighting selected item/box
         boxStyle = {

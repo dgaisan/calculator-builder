@@ -4,6 +4,7 @@ import { changeItemName, changeItemText, changeInputOrderedFirst } from './../..
 import { InputGroup, FormControl, Checkbox } from 'react-bootstrap';
 import './../../styles/bootstrap.css';
 import ColorPickerContainer from './../../containers/color-picker.js';
+import NumericStepperContainer from './../../containers/numeric-stepper';
 
 const NumberFieldSettings = ({
   item,
@@ -48,6 +49,14 @@ const NumberFieldSettings = ({
         onChange={e => { onInputOrderChanged(e.target.checked, item.id);}}>
         Input First, Label second
       </Checkbox>
+      <br />
+      <NumericStepperContainer
+        title="Font Size"
+        placeholderText="Enter Font Size"
+        propertyName="fontSize"
+        min={4}
+        max={99}
+        step={1} />
     </div>
   );
 };
