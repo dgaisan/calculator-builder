@@ -9,6 +9,7 @@ import './stage.css';
 import TextItem                         from './items/static-text';
 import NumberItem                       from './items/number-field';
 import ResultItem                       from './items/result-number-field';
+import DropdownItem                     from './items/dropdown-field';
 
 const ResponsiveReactGridLayout = WidthProvider(Responsive);
 
@@ -145,6 +146,8 @@ class Stage extends Component {
       const datagrid = {w: item.w, h: item.h, x: item.x, y: item.y};
       let itemView = null;
 
+      console.log('itemType:', item.type);
+
       switch (item.type) {
         case ItemTypes.STATIC_TEXT:
           itemView = <TextItem itemName={item.itemName}
@@ -167,6 +170,12 @@ class Stage extends Component {
             itemText={item.text}
             result={item.value}
             item={item}
+            onRemoveItem={() => {this.onRemoveItem(item.id)}} />
+          break;
+        case ItemTypes.DROPDOWN_FIELD:
+          itemView = <DropdownItem itemName={item.itemName}
+            itemText={item.text}
+            itemStyle={itemStyle}
             onRemoveItem={() => {this.onRemoveItem(item.id)}} />
           break;
         default:

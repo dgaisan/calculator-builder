@@ -29,6 +29,14 @@ export const addNumberResultField = (formula = '') => ({
   text: DEFAULT_TEXT,
 });
 
+export const addDropdownField = (formula = '') => ({
+  type: ActionTypes.ADD_DROPDOWN_FIELD,
+  id: ++nextItemId,
+  itemName: 'dropdown' + nextItemId,
+  options: [],
+  text: DEFAULT_TEXT,
+});
+
 export const removeItem = id => ({
   type: ActionTypes.REMOVE_ITEM,
   id: id,

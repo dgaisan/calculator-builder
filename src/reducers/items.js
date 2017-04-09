@@ -36,6 +36,12 @@ const items = (state = initialState, action) => {
         getNextDefaultItem(ItemTypes.NUMBER_RESULT, action, state.length)
       ];
 
+    case ActionTypes.ADD_DROPDOWN_FIELD:
+      return [
+        ...state,
+        getNextDefaultItem(ItemTypes.DROPDOWN_FIELD, action, state.length)
+      ];
+
     case ActionTypes.CHANGE_FORMULA:
       newstate = state.map(
       (item) => {

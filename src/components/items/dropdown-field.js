@@ -1,5 +1,6 @@
 import React, {PropTypes}   from 'react';
 import ItemHeader           from './item-header';
+import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 import './dropdown-field.css';
 
 const DropdownField = ({itemName, itemText, itemStyle, onRemoveItem}) => {
@@ -7,13 +8,19 @@ const DropdownField = ({itemName, itemText, itemStyle, onRemoveItem}) => {
     <div className="text-item">
       <ItemHeader name={itemName} onRemoveItem={onRemoveItem} />
       <div className="content" style={itemStyle}>
-        {itemText}
+        <ButtonToolbar>
+          <DropdownButton title="Default button" id="dropdown-size-medium">
+            <MenuItem eventKey="1">Option #1</MenuItem>
+            <MenuItem eventKey="2">Options #2</MenuItem>
+            <MenuItem eventKey="3">Options #3</MenuItem>
+          </DropdownButton>
+        </ButtonToolbar>
       </div>
     </div>
   );
 };
 
-TextItem.propTypes = {
+DropdownField.propTypes = {
   onRemoveItem: PropTypes.func.isRequired,
   itemName:     PropTypes.string.isRequired,
   itemText:     PropTypes.string.isRequired,
